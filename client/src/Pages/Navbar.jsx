@@ -11,6 +11,7 @@ import { RiBankFill, RiCouponFill } from 'react-icons/ri';
 import { CgProfile } from 'react-icons/cg';
 import { GiCardboardBoxClosed } from 'react-icons/gi';
 import { useNavigate } from 'react-router-dom';
+import { LoginModal } from '../Components/Login/Login';
 
 
 const Navbar = () => {
