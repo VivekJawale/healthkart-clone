@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .img-magnifier-container {
+    position: relative;
+  }
+  
+  .img-magnifier-glass {
+    position: absolute;
+    border: 3px solid #000;
+    border-radius: 50%;
+    cursor: none;
+    /*Set the size of the magnifier glass:*/
+    width: 100px;
+    height: 100px;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input {
+    -moz-appearance: textfield;
+  }
+  .description_data {
+    width: 100%;
+    height: 1296px;
+    padding: 23px 24px 0px;
+    margin: auto;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+  body {
+    font-family: "Roboto", sans-serif;
+    background-color: rgba(243, 240, 240, 0.974);
+  }
+  .accordin_title {
+    font-size: 14px;
+    color: #212121;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+  }
+  .fixed_cart {
+    background: hsla(0, 0%, 100%, 0.8);
+    border: 1px solid #e4e4e4;
+    box-shadow: 0 -12px 17px rgb(34 34 34 / 5%);
+    -webkit-backdrop-filter: blur(13px);
+    backdrop-filter: blur(13px);
+    z-index: 1000;
+    transition: opacity 0.75s;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  @media screen and (max-width: 912px) {
+    .description_data {
+      width: 100%;
+      height: 1396px;
+      padding: 23px 24px 0px;
+      margin: auto;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 200px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+    .fixed_cart {
+      background: hsla(0, 0%, 100%, 0.8);
+      border: 1px solid #e4e4e4;
+      box-shadow: 0 -12px 17px rgb(34 34 34 / 5%);
+      -webkit-backdrop-filter: blur(13px);
+      backdrop-filter: blur(13px);
+      z-index: 1000;
+      transition: opacity 0.75s;
+      position: fixed;
+      bottom: 50px;
+      left: 0;
+      right: 0;
+    }
+  }
+  @media screen and (max-width: 412px) {
+    .description_data {
+      width: 100%;
+      height: 1496px;
+      padding: 23px 24px 0px;
+      margin: auto;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+    .varient_sel {
+      display: none;
+    }
+  }
