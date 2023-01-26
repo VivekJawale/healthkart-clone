@@ -30,7 +30,7 @@ export const LoginModal=(props)=> {
       centered
       size="xl"
       className="my-modal"
-      style={{background:"transparent"}}
+      style={{background:"transparent",marginTop:"30px"}}
     >
         <div className ="main_login_div">
         <div className="main_login_div_upper">
