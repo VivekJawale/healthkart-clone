@@ -31,7 +31,7 @@ const Navbar = () => {
   const [healthNutrition, sethealthNutrition]= useState(false);
   const [fitness, setfitness]= useState(false);
   const [wellness, setwellness]= useState(false);
-
+  const [modalShow, setModalShow] = useState(false);
   
   const [allcategories, setallcategories]= useState(false);
   const [bestSellers, setbestSellers]= useState(false);
@@ -56,7 +56,14 @@ const Navbar = () => {
     }
   };
 
+
+
+      
+
   return (
+    <>
+    <LoginModal show={modalShow}
+        onHide={() => setModalShow(false)}/>
     <Box bg="white" zIndex={9999} w="100%" position="fixed" p="10px 0px" boxShadow="rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px" >
       <Box display="flex" w={["100%", "95%", "85%"]} m="auto" justifyContent="space-between" alignItems="center">
         <Box display="flex">
@@ -76,7 +83,7 @@ const Navbar = () => {
           </InputGroup>
         </Box>
         <Box w="17%" display="flex" justifyContent="space-between" alignItems="center">
-        {loggedin===false ? <Button display={["none", "none", "flex"]} m="0px" p="11px 25px" rounded="5px" border="none" bg="#2eb8b8" fontSize="18px" color="white">Login</Button>
+        {loggedin===false ? <Button display={["none", "none", "flex"]} m="0px" p="11px 25px" rounded="5px" border="none" bg="#2eb8b8" fontSize="18px" color="white" onClick={() => setModalShow(true)}>Login</Button>
            : <Box h="25px">
             <Box position="relative" display={["none", "none", "flex"]} onClick={()=>setuserShow(!userShow)} justifyContent="space-between" alignItems="center">
               <Icon color="#595959" boxSize="28px" as={CgProfile} />
@@ -387,6 +394,7 @@ const Navbar = () => {
        </Flex>
       </Box>
     </Box>
+    </>
   )
 }
 

@@ -1,0 +1,201 @@
+*{
+    font-family: Montserrat,sans-serif;
+}
+
+.main_login_div {
+  width: 950px;
+  height: 610px;
+  border-radius: 12px 12px 12px 12px;
+  color: hsl(0, 0%, 13%);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  background: #fff;
+  font-family: Montserrat,sans-serif;
+  /* z-index: 111; */
+  /* position: relative; */
+  flex-direction: column;
+  /* position: fixed; */
+}
+.my-modal .modal-content {
+  background: transparent;
+  }
+.main_login_div_upper {
+  width: 100%;
+  /* border-radius: 12px 0px 0px 12px; */
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main_login_div_lower {
+  width: 100%;
+  height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.left_login_div {
+  width: 50%;
+  height: 100%;
+  border-bottom-left-radius: 12px ;
+  background: #f1f1f1;
+}
+.right_login_div {
+  width: 50%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  border-bottom-right-radius: 12px;
+}
+.main_login_div_upper div{
+    background: #f1f1f1;
+ }
+ .requestotp_div{
+    margin-top: 30%;
+    padding: 0px 0px 0px 60px;
+ }
+ .verifyotp_div{
+    margin-top:20% ;
+    padding: 0px 0px 0px 60px;
+ }
+ .signup_div{
+    margin-top: 0%;
+    padding: 0px 0px 0px 60px;
+ }
+ .signup_modal_btns{
+    background: #00b5b7;
+    height: 50%;
+    width: 90%;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    margin-top: 24px;
+ }
+
+@media only screen and (max-width: 1000px) {
+    .main_login_div {
+        width: 100%;
+        height: 610px;
+        border-radius: 12px 12px 12px 12px;
+        color: hsl(0, 0%, 13%);
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        background: #fff;
+        /* z-index: 111; */
+        /* position: relative; */
+        flex-direction: column;
+        /* position: fixed; */
+      }
+      .main_login_div_upper div{
+         background: #fff;
+      }
+      .main_login_div_lower {
+        width: 100%;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .left_login_div {
+        /* width: 100%;
+        height: 100%;
+        border-bottom-left-radius: 12px ;
+        background: #f1f1f1; */
+        display: none;
+        
+      }
+      .right_login_div {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        border-bottom-right-radius: 12px;
+      }
+      .requestotp_div{
+        margin-top: 0%;
+        padding: 0px 0px 0px 60px;
+     }
+     .verifyotp_div{
+        margin-top:0% ;
+        padding: 0px 0px 0px 60px;
+     }
+     .signup_div{
+        margin-top: 0%;
+        padding: 0px 0px 0px 60px;
+     }
+}
+
+@media only screen and (max-width: 500px) {
+    .main_login_div {
+        width: 100%;
+        height: 610px;
+        border-radius: 12px 12px 12px 12px;
+        color: hsl(0, 0%, 13%);
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        background: #fff;
+        /* z-index: 111; */
+        /* position: relative; */
+        flex-direction: column;
+        /* position: fixed; */
+      }
+      .main_login_div_upper div{
+        background: #fff;
+     }
+      .main_login_div_lower {
+        width: 100%;
+        height: 560px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .left_login_div {
+        width: 100%;
+        height: 100%;
+        border-bottom-left-radius: 12px ;
+        background: #f1f1f1;
+      }
+      .right_login_div {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        border-bottom-right-radius: 12px;
+      }
+      .requestotp_div{
+        margin-top: 0%;
+        width: 300px;
+        padding: 0px 0px 0px 0px;
+     }
+     .verifyotp_div{
+        margin-top:0% ;
+        width: 80%;
+     }
+     .signup_div{
+        margin-top: 0%;
+        width: 80%;
+     }
+     .signup_modal_btns{
+        background: #00b5b7;
+        height: 50%;
+        width: 90%;
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+        border: none;
+        border-radius: 7px;
+        margin-top: 24px;
+     }
+}
