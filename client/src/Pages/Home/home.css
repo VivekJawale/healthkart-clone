@@ -1,0 +1,309 @@
+
+.download_healthkart_app_home{
+    width: 80%;
+    height: 638px;
+    margin: auto;
+    display: flex;
+    margin-top: 50px;
+}
+.download_healthkart_app_home_left{
+    width: 50%;
+    height: 638px;
+}
+.download_healthkart_app_home_left img{
+    width: 100%;
+    height: 100%;
+}
+.download_healthkart_app_home_right{
+    width: 50%;
+    height: 638px;
+}
+.download_healthkart_app_home_right div{
+    width: 100%;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    height: 20%;
+    flex-direction: column;
+}
+.download_hover_div:hover{
+    border: 2px solid #00b5b7;
+    border-radius: 12px;
+}
+.download_healthkart_app_home_right div h1{
+    font-size: 36px;
+}
+.play_store_apple{
+    width: 73%;
+    height: 77px;
+}
+.hk_premium_section{
+    width: 89%;
+    display: flex;
+    padding-top: 50px;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: auto;
+}
+.largest_d2c_brand{
+    width: 100%;
+    height: 40px;
+    background: #effbfc;
+    font-size: 14px;
+    color: #212121;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dont_miss_four_divs{
+    width: 80%;
+    margin: auto;
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(4,24%);
+    grid-template-rows: repeat(1,400px);
+    gap: 1%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.dont_miss_four_divs div{
+    width: 100%;
+    height: 400px;
+}
+.dont_miss_four_divs div img{
+    width: 100%;
+    height: 400px;
+    border-radius: 12px;
+}
+.bigHomeCarousal{
+    width: 100%;
+    height: 365px;
+    margin-bottom: 40px;
+}
+.bigHomeCarousal img{
+    width: 100%;
+    height: 365px;
+}
+[aria-label] {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50%;
+  }
+  .miniHomeCarousal{
+    height: 285px;
+    margin: auto;
+    width: 80%;
+    border-radius: 12px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .miniHomeCarousal img{
+    height: 285px;
+    width: 100%;
+    border-radius: 12px;
+  }
+  .multiCarousalNoProduct{
+    width: 80%;
+    height: 188px;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 40px;
+  }
+  .multiCarousalProduct{
+    width: 82%;
+    height: 528px;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 40px;
+  }
+  .why_healthkart{
+    width: 80%;
+    height: 154px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: auto;
+    margin-top: 20px;
+  }
+  .why_healthkart div{
+    width: 33%;
+    height: 154px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  
+
+@media only screen and (max-width: 1000px) {
+    .download_healthkart_app_home{
+        width: 50%;
+        height: 1000px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+    }
+    .download_healthkart_app_home_left{
+        width: 100%;
+        height: 500px;
+    }
+    .download_healthkart_app_home_left img{
+        width: 100%;
+        height: 100%;
+    }
+    .download_healthkart_app_home_right{
+        width: 100%;
+        height: 500px;
+    }
+    .download_healthkart_app_home_right div h1{
+        font-size: 24px;
+    }
+    .play_store_apple{
+        width: 100%;
+        height: 80px;
+    }
+    .hk_premium_section{
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin: auto;
+        flex-direction: column;
+    }
+    .hk_premium_section img{
+        margin-top: 20px;
+    }
+    .dont_miss_four_divs{
+        width: 80%;
+        margin: auto;
+        height: 850px;
+        display: grid;
+        grid-template-columns: repeat(2,48%);
+        grid-template-rows: repeat(2,400px);
+        gap: 1%;
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+    .dont_miss_four_divs div{
+        width: 100%;
+        height: 400px;
+    }
+    .dont_miss_four_divs div img{
+        width: 100%;
+        height: 400px;
+        border-radius: 12px;
+    }
+    .bigHomeCarousal{
+        width: 100%;
+        height: 265px;
+        margin-bottom: 40px;
+    }
+    .bigHomeCarousal img{
+        width: 100%;
+        height: 265px;
+    }
+    .miniHomeCarousal{
+        height: 185px;
+        margin: auto;
+        width: 80%;
+        border-radius: 12px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+      }
+      .miniHomeCarousal img{
+        height: 185px;
+        width: 100%;
+        border-radius: 12px;
+      }
+      .why_healthkart{
+       display: none;  
+    }
+    .why_healthkart_heading{
+        display: none;
+     }
+}
+
+@media only screen and (max-width: 500px) {
+    .download_healthkart_app_home{
+        width: 80%;
+        height: 850px;
+        margin: auto;
+        display: flex;
+        margin-top: 30px;
+        flex-direction: column;
+    }
+    .download_healthkart_app_home_left{
+        width: 100%;
+        height: 500px;
+    }
+    .download_healthkart_app_home_left img{
+        width: 100%;
+        height: 90%;
+    }
+    .download_healthkart_app_home_right{
+        width: 100%;
+        height: 350px;
+    }
+    .download_healthkart_app_home_right div h1{
+        font-size: 24px;
+    }
+    .download_healthkart_app_home_right .download_hover_div{
+        display: none;
+    }
+    .play_store_apple{
+        width: 100%;
+        height: 50px;
+    }
+    .hk_premium_section{
+      display: none;
+    }
+    .dont_miss_four_divs{
+        width: 90%;
+        margin: auto;
+        height: 550px;
+        display: grid;
+        grid-template-columns: repeat(2,48%);
+        grid-template-rows: repeat(2,250px);
+        gap: 1%;
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+    .dont_miss_four_divs div{
+        width: 100%;
+        height: 250px;
+    }
+    .dont_miss_four_divs div img{
+        width: 100%;
+        height: 250px;
+        border-radius: 12px;
+    }
+    .bigHomeCarousal{
+        width: 100%;
+        height: 130px;
+        margin-bottom: 40px;
+    }
+    .bigHomeCarousal img{
+        width: 100%;
+        height: 130px;
+    }
+    .miniHomeCarousal{
+        height: 105px;
+        margin: auto;
+        width: 80%;
+        border-radius: 12px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+      }
+      .miniHomeCarousal img{
+        height: 105px;
+        width: 100%;
+        border-radius: 12px;
+      }
+      .why_healthkart{
+        display: none;  
+     }
+     .why_healthkart_heading{
+        display: none;
+     }
+}
