@@ -38,8 +38,8 @@ const ProductCard = ({ props }) => {
 
 
   return (
-    <Box _hover={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px" }}
-      border="0px solid #C8C8C8" rounded="5px" p="10px" boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px">
+    <Box _hover={{ boxShadow: "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px" }}
+      border="1px solid #dbdee9;" rounded="5px" p="10px">
       <Box w="100%" display="flex" justifyContent="flex-end" alignItems="center">
         <Box display="none" bg="#404040" color="white" p="5px 15px">
           <Text m="0" fontSize="14px">Add to Wishlist</Text>

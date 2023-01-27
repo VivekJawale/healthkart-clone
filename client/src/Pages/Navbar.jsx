@@ -68,7 +68,7 @@ const Navbar = () => {
       <Box bg="white" zIndex={9999} w="100%" position="fixed" p="10px 0px" boxShadow="rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px" >
         <Box display="flex" w={["100%", "95%", "85%"]} m="auto" justifyContent="space-between" alignItems="center">
           <Box display="flex">
-            <IconButton aria-label="Open Menu" bg="none" size="lg" p="0px" _hover={{ bg: "none" }} mr={1} color="black" icon={<HamburgerIcon w="1.5em" h="1.5em" />} display={["flex", "flex", "none"]} onClick={() => changeDisplay('flex')} />
+            <IconButton aria-label="Open Menu" bg="none" size="lg" p="0px" _hover={{ bg: "none" }} mr={1} color="black" icon={<HamburgerIcon w="1.5em" h="1.5em" mt="40px" />} display={["flex", "flex", "none"]} onClick={() => changeDisplay('flex')} />
             <Link href="/">
               <Image m="0px" h="50px" src={logo} alt="logo" />
             </Link>
@@ -125,7 +125,7 @@ const Navbar = () => {
             <Box display={["flex", "flex", "none"]} justifyContent="space-between" alignItems="center" bg="#00cccc" p="25px 0px">
               <IconButton mt={2} mr={2} aria-label="Close Menu" size="lg" bg="none" color="white" icon={<CloseIcon />} onClick={() => changeDisplay('none')} />
               <Box w="90%" display="flex" justifyContent="center">
-                <Text bg="white" rounded="5px" p="10px 35px" color="#00cccc" fontSize="25px" onClick={() => setModalShow(true)}>Login / Signup</Text>
+                <Text bg="white" rounded="5px" p="10px 35px" color="#00cccc" fontSize="25px" onClick={() => {changeDisplay('none');setModalShow(true)}}>Login / Signup</Text>
               </Box>
             </Box>
             <Box display={(allcategories || bestSellers) ? "none" : ["flex", "flex", "none"]} gap="30px" flexDir="column" align="center" fontSize="2xl" color="#1a0933" >

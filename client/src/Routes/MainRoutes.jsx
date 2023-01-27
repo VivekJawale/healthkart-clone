@@ -11,11 +11,12 @@ import ProtienFoods from '../Pages/Product-Pages/ProtienFoods';
 import PrePost from '../Pages/Product-Pages/PrePost';
 import WorkoutEssential from '../Pages/Product-Pages/WorkoutEssential';
 import SearchPage from '../Pages/Product-Pages/SearchPage';
+import HomePage from '../Pages/Home/HomePage';
 const MainRoutes = () => {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Home />}></Route>
+        <Route path='/' element={<HomePage />}></Route>
         <Route path='/admin' element={<Admin />}></Route>
         <Route path='/products/protiens' element={<Protiens />}></Route>
         <Route path='/products/gainers' element={<Gainer />}></Route>
