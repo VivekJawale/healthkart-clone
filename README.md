@@ -8,13 +8,13 @@
 - Admin features
 - Screenshots
 - Demo
-- Technologies
+- Tech-stack
 - Status
 
 
 ## About the project
 
-This project is a full stack application which focuses on e-commerce for fitness and wellfare products. You can buy different products as per your body needs by talking to instructor our instructors live. You can also edit,update and add new users or products as admin(verified) on admin dashboard. So, login now with mobile number and start to be healthy.  
+This project is a full stack application which focuses on e-commerce for fitness and wellfare products. You can buy different products as per your body needs by talking to our instructors live! You can also edit,update and add new users or products as admin(verified) on admin dashboard. So, login now with mobile number and start to be healthy.  
 
 ## User features
 - Login and signup
@@ -56,6 +56,7 @@ deployed link for demo:- To be updated
 - React Bootstrap
 - Chakra Ui
 - React-multi-carousal
+- React-simple-chatbot
 
 ## Status
 
