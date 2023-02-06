@@ -4,6 +4,8 @@
 ## Table of Content
 
 - About the project
+- User features
+- Admin features
 - Screenshots
 - Demo
 - Technologies
@@ -13,6 +15,19 @@
 ## About the project
 
 This project is a full stack application which focuses on e-commerce for fitness and wellfare products. You can buy different products as per your body needs by talking to instructor our instructors live. You can also edit,update and add new users or products as admin(verified) on admin dashboard. So, login now with mobile number and start to be healthy.  
+
+## User features
+- Login and signup
+- Chat with us
+- Search, sort and filter products
+- Add to cart
+- Checkout 
+
+## Admin features
+- Add new users or products
+- Update user or products
+- Delete user or products  
+
 ## Screenshots
 
 To be updated
@@ -27,6 +42,7 @@ deployed link for demo:- To be updated
 - Express
 - MongoDB
 - Mongoose
+- Firebase
 - HTML
 - CSS
 - Javascript
