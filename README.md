@@ -30,10 +30,16 @@ This project is a full stack application which focuses on e-commerce for fitness
 
 ## Screenshots
 
+[![helthcart1.jpg](https://i.postimg.cc/44QtFSGR/helthcart1.jpg)](https://postimg.cc/BttXjNtm)
+
+[![helthcart2.jpg](https://i.postimg.cc/Cxqx9R8n/helthcart2.jpg)](https://postimg.cc/JsR8k4PR)
+
+[![helthcart3.jpg](https://i.postimg.cc/x8Z94QTP/helthcart3.jpg)](https://postimg.cc/sGpFMtWB)
+
 To be updated
 ## Demo
 
-deployed link for demo:- To be updated
+deployed link for demo:- https://healthcart-clone.vercel.app/
 
 ## Tech-stack
 
