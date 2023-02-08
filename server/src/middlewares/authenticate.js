@@ -15,10 +15,10 @@ const authenticate = (req, res, next) => {
         req.body.id=id
       next();
     } else {
-      res.send("You are not authorized");
+      res.send({msg:"You are not authorized"});
     }
   } else {
-    res.send("You are not authorized");
+    res.send({msg:"You are not authorized"});
   }
 };
 

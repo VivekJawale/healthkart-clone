@@ -13,7 +13,7 @@ function App() {
       <Navbar />
       <div style={{ paddingTop: "70px" }}> <SubNav /></div>
       <MainRoutes />
-      {/* <MainChatbot /> */}
+      <MainChatbot />
     </div>
   );
 }

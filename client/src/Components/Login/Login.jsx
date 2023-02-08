@@ -5,26 +5,207 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { PinInput, PinInputField,HStack } from '@chakra-ui/react'
 import { useState } from 'react';
-import "./login.css"
+import "./login.css";
+import { authentification } from "../../firebase";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import swal from 'sweetalert';
+import { postLoginSuccess } from '../../Redux/Auth/auth.action';
+import { useDispatch } from 'react-redux';
 
 
 export const LoginModal=(props)=> {
     const [otpentry,setOtpentry]=useState(false);
-    const [signup,setSignup]=useState(false);
+    const [signup,setSignup]=useState(true);
     const [otp,setOtp]=useState("");
+    const [mnumber, setNumber] = useState("");
+    const [name,setName]=useState("");
+    const [email,setEmail]=useState("");
+    const [pass,setPass]=useState("");
+    const [gender,setGender]=useState("Male");
+    const [loading,setLoading]=useState(false);
+    const dispatch=useDispatch();
+
+    const checkrecaptcha=()=>{
+      window.recaptchaVerifier = new RecaptchaVerifier(
+        "recaptcha-container",
+        {
+          size: "invisible",
+          callback: (response) => {
+            // reCAPTCHA solved, allow signInWithPhoneNumber.
+          },
+        },
+        authentification
+      );
+    }
+
+
 
     const Requestotp=()=>{
-          setOtpentry(true);
-          setSignup(false)
+        
+          if(mnumber.length!=10){
+              return swal({
+                title:"You entered wrong mobile number",
+                text:"It must be 10 digit number",
+                icon:"warning"
+              })
+          }
+          setLoading(true);
+          
+        //   setOtpentry(true);
+        // return  setSignup(false);
+          
+
+          let phoneNumber=`+91${mnumber}`;
+
+          checkrecaptcha();
+          let appVerifier = window.recaptchaVerifier;
+          signInWithPhoneNumber(authentification, phoneNumber, appVerifier)
+            .then((confirmationResult) => {
+              window.confirmationResult = confirmationResult;
+              swal({
+                title: "OTP Sent !",
+                text: `OTP successfully sent on ${phoneNumber}`,
+                icon: "success",
+                button: "OK",
+              });
+              setOtpentry(true);
+              setSignup(false);
+              setLoading(false)
+            })
+            .catch((error) => {
+              console.log(error);
+              setOtpentry(false);
+              setSignup(false);
+              setLoading(false)
+              swal({
+                title: "Error in Sending OTP",
+                text: "Please check Entered Mobile Number or try after some time",
+                icon: "error",
+                button: "OK",
+              });
+            });
+
+          
     }
 
-    const Verifyotp=()=>{
-        console.log(otp)
-        setOtpentry(false);
-        setSignup(true)
+    const Verifyotp=async()=>{
+
+      if(otp.length!=6){
+        return swal({
+          title:"You entered wrong OTP",
+          text:"It must be 6 digit number",
+          icon:"warning"
+        })
     }
+    let mnumber_to_num=Number(mnumber)
+    let payload={
+      phoneNumber:mnumber_to_num
+    }
+    await fetch("http://localhost:8080/user/login",{
+      method:"POST",
+      body:JSON.stringify(payload),
+      headers:{
+        "Content-type":"application/json"
+      }
+    }).then((res)=>{
+      //  console.log(res)
+      return res.json();
+    }).then((res)=>{
+      //  console.log(res)
+     
+    setLoading(true);
+
+    let confirmationResult = window.confirmationResult;
+
+    confirmationResult
+      .confirm(otp)
+      .then((result) => {
+        
+        // User signed in successfully.
+        const user = result.user;
+        swal({
+          title: "Mobile Number Verified",
+          text: `+91${mnumber} is successfully verified`,
+          icon: "success",
+          buttons: false,
+        });
+        // console.log(res.message)
+        if(res.msg=="new user"){
+          setSignup(true);
+          setOtpentry(false);
+        }
+        else{
+          dispatch(postLoginSuccess(res));
+          setSignup(false);
+          setOtpentry(false);
+          props.onHide();
+        }   
+      })
+      .catch((error) => {
+        // User couldn't sign in (bad verification code?)
+        // ...
+        setLoading(false);
+        swal({
+          title: "Wrong OTP !",
+          text: "Entered OTP is wrong, please enter correct OTP",
+          icon: "error",
+          button: "OK",
+        });
+      });
+    })  
+        // setOtpentry(false);
+        // setSignup(true)
+    }
+
+    const signupFunction=async()=>{
+       
+      if(name==""||email==""||pass==""){
+        return swal({
+          title:"Please fill all the fields!",
+          text:"all fields must be filled",
+          icon:"warning"
+        })
+    }
+    let mnumber_to_num=Number(mnumber)
+    let payload={
+      name:name,
+      email:email,
+      password:pass,
+      phoneNumber:mnumber_to_num,
+      gender:gender,
+      role:"Guest"
+    }
+
+    await fetch("http://localhost:8080/user/signup",{
+      method:"POST",
+      body:JSON.stringify(payload),
+      headers:{
+        "Content-type":"application/json"
+      }
+    }).then((res)=>{
+      //  console.log(res)
+      return res.json();
+    }).then((res)=>{
+      if(res.msg=="Logged in success"){
+        setSignup(false);
+        setOtpentry(false);
+       dispatch(postLoginSuccess(res));
+       props.onHide();
+      }
+      else{
+         swal({
+          title:" registration failed"
+         })
+         setOtpentry(false);
+         setSignup(false);
+      }
+    })
+
+    }
+
 
   return (
+    <>
     <Modal
       {...props}
       centered
@@ -66,6 +247,8 @@ export const LoginModal=(props)=> {
         style={{color:"#1c1c28",fontSize: "16px",fontWeight: "500",lineHeight: "27px",letterSpacing: "normal",height:"51px",border: "1px solid #dbdee9",borderRadius: "0 8px 8px 0",padding: "25.5px 16px"}}
           aria-label="Example text with button addon"
           aria-describedby="basic-addon1"
+          value={mnumber}
+          onChange={(e)=>{setNumber(e.target.value)}}
         />
       </InputGroup>
             </div>
@@ -88,7 +271,7 @@ export const LoginModal=(props)=> {
         style={{color:"#1c1c28",fontSize: "16px",fontWeight: "500",lineHeight: "27px",letterSpacing: "normal",height:"51px",border: "1px solid #dbdee9",borderRadius: "0 8px 8px 0",padding: "25.5px 16px"}}
           aria-label="Example text with button addon"
           aria-describedby="basic-addon1"
-          value={otp} onChange={(e)=>{setOtp(e)}}
+          value={otp} onChange={(e)=>{setOtp(e.target.value)}}
         />
       </InputGroup>
            
@@ -98,23 +281,63 @@ export const LoginModal=(props)=> {
 </div>
     </div>:
      <div style={{width:"475px",height:"242.8px",fontFamily: "Montserrat,sans-serif"}} className="signup_div">
-     <div style={{width:"415px",height:"60px",fontSize:"24px",fontWeight: "600",lineHeight: "36px",letterSpacing: "normal",margin:"0px 0px 32px",color:"#1C1C28"}}>
+     <div style={{width:"415px",height:"60px",fontSize:"24px",fontWeight: "600",lineHeight: "36px",letterSpacing: "normal",margin:"0px 0px 0px",color:"#1C1C28"}}>
      <p>Sign Up</p>
-     <p style={{color:"#A4A4A9",fontWeight:"light",width:"90%",fontSize:"13px",marginTop:"0px"}}>OTP sent to number</p>
      </div>
-   
-     <HStack style={{width:"80%"}}>
-     <PinInput   size="lg" >
-<PinInputField style={{border:"1px solid #dbdee9"}} />
-<PinInputField style={{border:"1px solid #dbdee9"}}/>
-<PinInputField style={{border:"1px solid #dbdee9"}}/>
-<PinInputField style={{border:"1px solid #dbdee9"}}/>
-<PinInputField style={{border:"1px solid #dbdee9"}}/>
-<PinInputField style={{border:"1px solid #dbdee9"}}/>
-</PinInput></HStack>
-<p style={{color:"orange",fontWeight:"bold",width:"90%",fontSize:"14px",textAlign:"right",marginTop:"20px"}}>RESEND OTP</p>
+
+     <InputGroup className="mb-3" style={{width:"89%"}}>
+       
+        <Form.Control
+        style={{color:"#1c1c28",fontSize: "16px",fontWeight: "500",lineHeight: "27px",letterSpacing: "normal",height:"51px",border: "1px solid #dbdee9",borderRadius: "0 8px 8px 0",padding: "25.5px 16px"}}
+          aria-label="Example text with button addon"
+          aria-describedby="basic-addon1"
+          placeholder='name'
+          value={name} onChange={(e)=>{setName(e.target.value)}}
+        />
+   </InputGroup>
+         <InputGroup className="mb-3" style={{width:"89%"}}>
+<Form.Control
+        style={{color:"#1c1c28",fontSize: "16px",fontWeight: "500",lineHeight: "27px",letterSpacing: "normal",height:"51px",border: "1px solid #dbdee9",borderRadius: "0 8px 8px 0",padding: "25.5px 16px"}}
+          aria-label="Example text with button addon"
+          aria-describedby="basic-addon1"
+          placeholder='email'
+          value={email} onChange={(e)=>{setEmail(e.target.value)}}
+        />
+           </InputGroup>
+         <InputGroup className="mb-3" style={{width:"89%"}}>
+        <Form.Control
+        style={{color:"#1c1c28",fontSize: "16px",fontWeight: "500",lineHeight: "27px",letterSpacing: "normal",height:"51px",border: "1px solid #dbdee9",borderRadius: "0 8px 8px 0",padding: "25.5px 16px"}}
+          aria-label="Example text with button addon"
+          aria-describedby="basic-addon1"
+          placeholder='password'
+          value={pass} onChange={(e)=>{setPass(e.target.value)}}
+        />
+         </InputGroup>
+         <InputGroup className="mb-3" style={{width:"89%"}}>
+         <Form.Check
+            inline
+            label="Male"
+            name="group1" type='radio'
+            onChange={()=>{setGender("Male")}}
+          />
+          <Form.Check
+            inline
+            label="Female" type='radio'
+            value={"Female"}
+            onChange={()=>{setGender("Female")}}
+          />
+          <Form.Check
+            inline
+            label="Others"
+            type='radio'
+            value={""}
+            onChange={()=>{setGender("Others")}}
+          />
+
+      </InputGroup>
+
 <div style={{width:"415px",height:"100px",margin:"0px 0px 32px"}}>
-<button className="signup_modal_btns"  onClick={Verifyotp}>Continue</button>
+<button className="signup_modal_btns"  onClick={signupFunction}>Sign Up</button>
 </div>
 </div>
     )}
@@ -124,5 +347,7 @@ export const LoginModal=(props)=> {
        
       
     </Modal>
+    <div id="recaptcha-container"></div>
+    </>
   );
 }

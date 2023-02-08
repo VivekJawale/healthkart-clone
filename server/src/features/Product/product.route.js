@@ -146,4 +146,14 @@ app.patch("/:id", async (req, res) => {
     }
 });
 
+
+app.delete("/:id",async(req,res)=>{
+    try{
+        let product = await Product.findByIdAndDelete({ _id: req.params.id });
+        return res.status(200).send({msg:"deleted"});
+    }
+    catch(err){
+        console.log(err)
+    }
+})
 module.exports = app;

@@ -12,6 +12,10 @@ import { CgProfile } from 'react-icons/cg';
 import { GiCardboardBoxClosed } from 'react-icons/gi';
 import { useNavigate } from 'react-router-dom';
 import { LoginModal } from '../Components/Login/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import { store } from '../Redux/store';
+import { userLogout } from '../Redux/Auth/auth.action';
+import swal from 'sweetalert';
 
 
 const Navbar = () => {
@@ -36,6 +40,30 @@ const Navbar = () => {
 
   const [allcategories, setallcategories] = useState(false);
   const [bestSellers, setbestSellers] = useState(false);
+   console.log(store.getState())
+  const nameUser=useSelector(store=>store.AuthReducer.name)
+  // console.log(nameUser)
+ const dispatch=useDispatch();
+
+  const logout=()=>{
+    swal({
+      title: "Are you sure?",
+      text: "You want to logout? You can login again!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        dispatch(userLogout())
+        swal("Logged out successfully!", {
+          icon: "success",
+        });
+      } else {
+       
+      }
+    });
+  }
 
   const handleHoverallcategory = () => {
     setallcategories(!allcategories);
@@ -84,7 +112,7 @@ const Navbar = () => {
             </InputGroup>
           </Box>
           <Box w="17%" display="flex" justifyContent="space-between" alignItems="center">
-            {loggedin === false ? <Button display={["none", "none", "flex"]} m="0px" p="11px 25px" rounded="5px" border="none" bg="#2eb8b8" fontSize="18px" color="white" onClick={() => setModalShow(true)}>Login</Button>
+            {nameUser === "" ? <Button display={["none", "none", "flex"]} m="0px" p="11px 25px" rounded="5px" border="none" bg="#2eb8b8" fontSize="18px" color="white" onClick={() => setModalShow(true)}>Login</Button>
               : <Box h="25px">
                 <Box position="relative" display={["none", "none", "flex"]} onClick={() => setuserShow(!userShow)} justifyContent="space-between" alignItems="center">
                   <Icon color="#595959" boxSize="28px" as={CgProfile} />
@@ -93,7 +121,7 @@ const Navbar = () => {
                 <Box display={userShow ? ["none", "none", "inline"] : "none"} bg="white" position="absolute" w="250px" ml="-8%" mt="5px" rounded="10px">
                   <Box onClick={() => navigate("/")} w="100%" bg="#00cccc" p="20px 5px" roundedTop="10px" color="white" display="flex" justifyContent="space-around" alignItems="center">
                     <Icon color="white" boxSize="25px" as={CgProfile} />
-                    <Text fontSize="18px">Hi, Name</Text>
+                    <Text fontSize="18px">Hi, {nameUser}</Text>
                     <Icon color="white" boxSize="25px" as={ChevronRightIcon} />
                   </Box>
                   <Box p="10px" bg="white" roundedBottom="10px">
@@ -106,7 +134,7 @@ const Navbar = () => {
                     <Link m="10px" bg="white" display="flex" gap="10px">
                       <Icon color="#595959" boxSize="25px" as={RiBankFill} /> HK Cash
                     </Link><br />
-                    <Link m="10px" bg="white" display="flex" gap="10px">
+                    <Link onClick={logout} m="10px" bg="white" display="flex" gap="10px">
                       <Icon color="#00cccc" boxSize="25px" as={FiLogOut} /> Logout
                     </Link><br />
                   </Box>
@@ -125,7 +153,7 @@ const Navbar = () => {
             <Box display={["flex", "flex", "none"]} justifyContent="space-between" alignItems="center" bg="#00cccc" p="25px 0px">
               <IconButton mt={2} mr={2} aria-label="Close Menu" size="lg" bg="none" color="white" icon={<CloseIcon />} onClick={() => changeDisplay('none')} />
               <Box w="90%" display="flex" justifyContent="center">
-                <Text bg="white" rounded="5px" p="10px 35px" color="#00cccc" fontSize="25px" onClick={() => {changeDisplay('none');setModalShow(true)}}>Login / Signup</Text>
+                <Text bg="white" rounded="5px" p="10px 35px" color="#00cccc" fontSize="25px" onClick={() => {changeDisplay('none');setModalShow(true)}}>{nameUser==""?"Login / Signup":`Hi, ${nameUser}`}</Text>
               </Box>
             </Box>
             <Box display={(allcategories || bestSellers) ? "none" : ["flex", "flex", "none"]} gap="30px" flexDir="column" align="center" fontSize="2xl" color="#1a0933" >
@@ -195,7 +223,9 @@ const Navbar = () => {
               <Box w="90%" m="auto" display="flex" justifyContent="space-between" alignItems="center">
                 <Box display="flex" p="15px 0px" justifyContent="space-between" alignItems="center" gap="5px">
                   <Icon color="#595959" boxSize="28px" as={HiOutlineLogout} />
-                  <Text color="#595959">Logout</Text>
+                  {nameUser!=""?
+                  <Text color="#595959" onClick={()=>{changeDisplay('none');setModalShow(true)}}>Login</Text>:
+                  <Text color="#595959" onClick={logout}>Logout</Text>}
                 </Box>
                 <Icon color="#595959" boxSize="30px" as={ChevronRightIcon} />
               </Box>

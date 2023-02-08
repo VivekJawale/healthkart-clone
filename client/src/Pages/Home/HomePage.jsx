@@ -15,6 +15,8 @@ const HomePage = () => {
     const [protienfoodsData,setProteinfoods]=useState([]);
     const [workoutData,setWorkout]=useState([]);
 
+    console.log(process.env.REACT_APP_API_URL)
+
     const firstDontMiss = [
         "https://img7.hkrtcdn.com/22780/bnr_2277906_o.jpg",
         "https://img5.hkrtcdn.com/22890/bnr_2288974_o.jpg",
