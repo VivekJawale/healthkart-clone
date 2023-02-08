@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 8080;
 const userRoute = require("./src/features/auth/auth.route");
 const productRoute = require("./src/features/Product/product.route");
 const cartRoute = require("./src/features/Cart/cart.route");
-
+const checkroleRoute=require("./src/features/checkRole/checkrole.route")
 
 
 const app = express();
@@ -21,6 +21,7 @@ app.get('/', async (req, res) => {
 app.use("/user", userRoute);
 app.use("/product", productRoute);
 app.use("/cart", cartRoute);
+app.use("/check",checkroleRoute);
 
 
 

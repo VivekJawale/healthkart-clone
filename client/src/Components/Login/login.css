@@ -181,10 +181,12 @@
      }
      .verifyotp_div{
         margin-top:0% ;
+        padding: 0px 0px 0px 0px;
         width: 80%;
      }
      .signup_div{
         margin-top: 0%;
+        padding: 0px 0px 0px 0px;
         width: 80%;
      }
      .signup_modal_btns{
