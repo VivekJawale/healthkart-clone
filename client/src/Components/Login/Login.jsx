@@ -63,7 +63,7 @@ export const LoginModal=(props)=> {
           +91
         </Button>
         <Form.Control
-        style={{color:"#1c1c28",fontSize: "16px",fontWeight: "500",lineHeight: "27px",letterSpacing: "normal",height:"51px",border: "1px solid #dbdee9",borderRadius: "0 8px 8px 0",padding: "0 16px"}}
+        style={{color:"#1c1c28",fontSize: "16px",fontWeight: "500",lineHeight: "27px",letterSpacing: "normal",height:"51px",border: "1px solid #dbdee9",borderRadius: "0 8px 8px 0",padding: "25.5px 16px"}}
           aria-label="Example text with button addon"
           aria-describedby="basic-addon1"
         />
@@ -77,27 +77,27 @@ export const LoginModal=(props)=> {
 
             </div>
 :(otpentry==true&&signup==false?
-            <div style={{height:"242.8px",padding:"0px 0px 0px 60px",fontFamily: "Montserrat,sans-serif"}} className="verifyotp_div">
+            <div style={{height:"242.8px",fontFamily: "Montserrat,sans-serif"}} className="verifyotp_div">
             <div style={{width:"415px",height:"60px",fontSize:"24px",fontWeight: "600",lineHeight: "36px",letterSpacing: "normal",margin:"0px 0px 32px",color:"#1C1C28"}}>
             <p>Enter verification code</p>
             <p style={{color:"#A4A4A9",fontWeight:"light",width:"90%",fontSize:"13px",marginTop:"0px"}}>OTP sent to number</p>
             </div>
-          
-            <HStack style={{width:"80%"}}>
-            <PinInput value={otp} onChange={(e)=>{setOtp(e)}} size="lg" >
-  <PinInputField style={{border:"1px solid #dbdee9"}} />
-  <PinInputField style={{border:"1px solid #dbdee9"}}/>
-  <PinInputField style={{border:"1px solid #dbdee9"}}/>
-  <PinInputField style={{border:"1px solid #dbdee9"}}/>
-  <PinInputField style={{border:"1px solid #dbdee9"}}/>
-  <PinInputField style={{border:"1px solid #dbdee9"}}/>
-</PinInput></HStack>
+            <InputGroup className="mb-3" style={{width:"89%"}}>
+       
+        <Form.Control
+        style={{color:"#1c1c28",fontSize: "16px",fontWeight: "500",lineHeight: "27px",letterSpacing: "normal",height:"51px",border: "1px solid #dbdee9",borderRadius: "0 8px 8px 0",padding: "25.5px 16px"}}
+          aria-label="Example text with button addon"
+          aria-describedby="basic-addon1"
+          value={otp} onChange={(e)=>{setOtp(e)}}
+        />
+      </InputGroup>
+           
 <p style={{color:"orange",fontWeight:"bold",width:"90%",fontSize:"14px",textAlign:"right",marginTop:"20px"}}>RESEND OTP</p>
 <div style={{width:"415px",height:"100px",margin:"0px 0px 32px"}}>
 <button className="signup_modal_btns"  onClick={Verifyotp}>Continue</button>
 </div>
     </div>:
-     <div style={{width:"475px",height:"242.8px",padding:"0px 0px 0px 60px",fontFamily: "Montserrat,sans-serif"}} className="signup_div">
+     <div style={{width:"475px",height:"242.8px",fontFamily: "Montserrat,sans-serif"}} className="signup_div">
      <div style={{width:"415px",height:"60px",fontSize:"24px",fontWeight: "600",lineHeight: "36px",letterSpacing: "normal",margin:"0px 0px 32px",color:"#1C1C28"}}>
      <p>Sign Up</p>
      <p style={{color:"#A4A4A9",fontWeight:"light",width:"90%",fontSize:"13px",marginTop:"0px"}}>OTP sent to number</p>

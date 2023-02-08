@@ -7,113 +7,99 @@ const jwt = require("jsonwebtoken");
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
-app.post("/login", async (req, res) => {
-    const { phoneNumber, email, password } = req.body;
+app.get("/users", async (req, res) => {
     try {
-        if (phoneNumber) {
-            let user = await User.findOne({ phoneNumber });
-            if (user) {
-                let token = jwt.sign(
-                    {
-                        _id: user._id,
-                        phoneNumber: user.phoneNumber,
-                    },
-                    SECRET_KEY
-                );
-                let otp = generateOtp();
-                return res
-                    .status(200)
-                    .send({ token, otp, message: "login Successfully" });
-            } else {
-                let user = await User.create({ phoneNumber });
-                let token = jwt.sign(
-                    {
-                        _id: user._id,
-                        phoneNumber: user.phoneNumber,
-                    },
-                    SECRET_KEY
-                );
-                let otp = generateOtp();
-                return res.status(200).send({ otp, token, user });
-            }
-        } else {
-            let user = await User.findOne({ email });
-            if (user) {
-                let pass = await bcrypt.compare(password, user.password);
-                if (!pass) {
-                    return res.send("incorrect password");
-                } else {
-                    let token = jwt.sign(
-                        {
-                            _id: user._id,
-                            email: user.email,
-                            role: user.role,
-                        },
-                        SECRET_KEY
-                    );
-                    return res.send({ token, user, message: "Login Successfully" });
-                }
-            } else {
-                return res.send("Ask Admin to create the role");
-            }
-        }
-    } catch (error) {
-        return res.send(error.message);
+      const users = await User.find();
+      res.send(users);
+    } catch (err) {
+      console.log(err);
     }
-});
-
-app.post("/signup", async (req, res) => {
-    const { email, name, password, age, gender, role, token } = req.body;
-
+  });
+  
+  
+  
+  app.post("/login",async(req,res)=>{
+      const { phoneNumber } = req.body;
+  
+      try{
+          if(phoneNumber){
+              let user = await User.findOne({ phoneNumber });
+              if (user) {
+                let token = jwt.sign(
+                  {
+                    _id: user._id,
+                    phoneNumber: user.phoneNumber,
+                    role: user.role,
+                    name: user.name
+                  },
+                  SECRET_KEY
+                );
+                return res
+                  .status(200)
+                  .send({ token,name:user.name, message: "Login Successfully" });
+              }
+              else{
+                  res.send("new user")
+              }
+          }
+      }
+      catch(err){
+        console.log(err)
+      }
+  })
+  
+  app.post("/signup", async (req, res) => {
+    const { email, name, password, phoneNumber, gender, role } = req.body;
+  
     try {
-        if (!token) {
-            let user = await User.findOne({ email });
-            if (user) {
-                return res.send({
-                    status: 0,
-                    massage: "user already exist",
-                });
-            } else {
-                if (role) {
-                    const pass = await bcrypt.hash(password, 10);
-                    let user = await User.create({
-                        ...req.body,
-                        password: pass,
-                    });
-                    return res.status(201).send(user);
-                } else {
-                    const pass = await bcrypt.hash(password, 10);
-                    let user = await User.create({
-                        ...req.body,
-                        password: pass,
-                    });
-                    return res.status(201).send({
-                        user,
-                        message: "User has been created",
-                    });
-                }
-            }
+      bcrypt.hash(password, 5, async (err, secured_password) => {
+        if (err) {
+          console.log(err);
+          res.send({ msg: "registration failed" });
         } else {
-            if (!role) {
-                return res.send("Role is missing");
-            } else {
-                let pass = await bcrypt.hash(password, 10);
-                let user = await User.create({
-                    ...req.body,
-                    password: pass,
-                });
-                return res
-                    .status(201)
-                    .send({ user, message: "User created Successfully by Admin" });
-            }
+          const checkuser = await User.findOne({ phoneNumber });
+          // console.log(checkuser);
+          if (checkuser) {
+            return res.send("Already registred user cant register again");
+          }
+  
+          const user = new User({
+            name,
+            email,
+            password: secured_password,
+            phoneNumber,
+            gender,
+            role,
+          });
+          // console.log(user);
+          await user.save();
+        //   console.log(user);
+          const hashed_password = user.password;
+          if (user) {
+            bcrypt.compare(password, hashed_password, (err, result) => {
+              if (result) {
+                const token = jwt.sign(
+                  {
+                    _id: user._id,
+                    phoneNumber: user.phoneNumber,
+                    role: user.role,
+                    name: user.name
+                  },
+                  SECRET_KEY
+                );
+                res.send({ msg: "Logged in success",name:user.name, token: token });
+              } else {
+                res.send("FAILED");
+              }
+            });
+          }
         }
-    } catch (error) {
-        return res.status(404).send(error.message);
+      });
+    } catch (err) {
+      console.log(err)
     }
-});
-
-const generateOtp = () => {
-    return Math.floor(Math.random() * 10000) + 1;
-};
+  });
+  
+  
 
 module.exports = app;
