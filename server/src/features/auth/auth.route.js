@@ -58,7 +58,7 @@ app.get("/users", async (req, res) => {
           res.send({ msg: "registration failed" });
         } else {
           const checkuser = await User.findOne({ phoneNumber });
-          console.log(checkuser);
+          // console.log(checkuser);
           if (checkuser) {
             return res.send("Already registred user cant register again");
           }
