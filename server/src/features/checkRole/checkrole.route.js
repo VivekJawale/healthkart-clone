@@ -16,8 +16,8 @@ app.get("/checkrole",async(req,res)=>{
         const id=req.body.id;
         
         const user=await User.findOne({_id:id});
-        //  console.log(user)
-        if(user.role===role ){
+        // console.log(user,role)
+        if(user.role==="Admin" && role=="Admin"){
              res.send("Hello Admin")
         }
         else{
