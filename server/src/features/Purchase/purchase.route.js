@@ -36,10 +36,10 @@ app.post("/purchase_order",async(req,res)=>{
 
        await purchase.save();
 
-       res.send("purchased")
+       res.send({msg:"purchased"})
     }
     else{
-        res.send("not logged in")
+        res.send({msg:"not logged in"})
     }
     }
     catch(err){

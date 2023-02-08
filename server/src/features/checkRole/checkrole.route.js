@@ -18,10 +18,10 @@ app.get("/checkrole",async(req,res)=>{
         const user=await User.findOne({_id:id});
         // console.log(user,role)
         if(user.role==="Admin" && role=="Admin"){
-             res.send("Hello Admin")
+             res.send({msg:"Hello Admin"})
         }
         else{
-            res.send("Not Authorized")
+            res.send({msg:"Not Authorized"})
         }
     }
     catch(err){

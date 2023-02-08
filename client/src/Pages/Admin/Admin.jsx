@@ -17,6 +17,8 @@ import Pagination from 'react-bootstrap/Pagination';
 import Placeholder from 'react-bootstrap/Placeholder';
 import AddNewProduct from "./admincomponents/AddNewProduct";
 import Navbar from "../Navbar";
+import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 // const url=process.env.ApiUrl
 
 const Admin = () => {
@@ -28,7 +30,8 @@ const Admin = () => {
   const [page,setPage]=useState(1);
   const [totalPages,SetTotalPages]=useState(41);
   const [sort,setSort]=useState("");
-
+  const [isAdmin,setIsAdmin]=useState(false);
+  const navigate=useNavigate();
 
   useEffect(() => {
     Aos.init({ duration: 2000 });
@@ -96,6 +99,15 @@ const Admin = () => {
         });
     }
   }, [filterTerm,page,sort]);
+
+  if(isAdmin==false){
+       navigate("/");
+        swal({
+        title:"Not authorized!",
+        text:"You are not authorized! Please contact devlopers",
+        icon:"error"
+       })
+  }
 
   return (
     <>

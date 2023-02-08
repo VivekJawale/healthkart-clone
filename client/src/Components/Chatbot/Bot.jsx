@@ -25,22 +25,23 @@ const Bot = ({ children }) => {
       options: [
         { value: 2, label: "Product Complaint", trigger: "6" },
         { value: 3, label: "About US", trigger: "7" },
+        { value: 5, label: "My orders", trigger: "5"},
         { value: 4, label: "Nothing for now!", trigger: "9" }
       ]
     },
     {
       id: "5",
-      component: <div> Sample of Product Enquiry Page </div>,
+      component: <div> logged in  first </div>,
       trigger: "8"
     },
     {
       id: "6",
-      component: <div>E-mail us at demo@gmail.com to send a complaint request.</div>,
+      component: <div>E-mail us at healthkartclone@gmail.com to send a complaint request.</div>,
       trigger: "8"
     },
     {
       id: "7",
-      component: <div>We are an aspiring full stack web devlo[ers currently studying in Masai School. The team includes 5 members which includes Vivek, Ankit, Shubham, Sanghmitra and Suman.</div>,
+      component: <div>We are an aspiring full stack web devlopers currently studying in Masai School. The team includes 3 members which includes Vivek, Ankit and Sanghmitra.</div>,
       trigger: "8"
     },
     {

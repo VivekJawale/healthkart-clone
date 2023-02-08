@@ -28,7 +28,7 @@ const Container = () => {
     <ThemeProvider theme={theme}>
       <ChatBot
         headerTitle="HealthMart is Online! Chat with us!" 
-        speechSynthesis={{ enable: true, lang: "en" }}
+        // speechSynthesis={{ enable: true, lang: "en" }}
         steps={steps}
         {...config}
       />

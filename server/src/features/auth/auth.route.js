@@ -39,7 +39,7 @@ app.get("/users", async (req, res) => {
                   .send({ token,name:user.name, message: "Login Successfully" });
               }
               else{
-                  res.send("new user")
+                  res.send({msg:"new user"})
               }
           }
       }
@@ -60,7 +60,7 @@ app.get("/users", async (req, res) => {
           const checkuser = await User.findOne({ phoneNumber });
           // console.log(checkuser);
           if (checkuser) {
-            return res.send("Already registred user cant register again");
+            return res.send({msg:"Already registred user cant register again"});
           }
   
           const user = new User({
@@ -89,7 +89,7 @@ app.get("/users", async (req, res) => {
                 );
                 res.send({ msg: "Logged in success",name:user.name, token: token });
               } else {
-                res.send("FAILED");
+                res.send({msg:"FAILED"});
               }
             });
           }
