@@ -40,7 +40,7 @@ const Navbar = () => {
 
   const [allcategories, setallcategories] = useState(false);
   const [bestSellers, setbestSellers] = useState(false);
-   console.log(store.getState())
+  //  console.log(store.getState())
   const nameUser=useSelector(store=>store.AuthReducer.name)
   // console.log(nameUser)
  const dispatch=useDispatch();
@@ -59,6 +59,9 @@ const Navbar = () => {
         swal("Logged out successfully!", {
           icon: "success",
         });
+        setTimeout(() => {
+           window.location.reload();
+        }, 2000);
       } else {
        
       }

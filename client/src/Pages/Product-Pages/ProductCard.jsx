@@ -13,7 +13,7 @@ const ProductCard = ({ props }) => {
   const dispatch=useDispatch();
   const cartData = useSelector((store) => store.CartReducer);
 
-  console.log(cartData);
+  
   const handlecart= (data)=>{
     let newcart2=cartData.filter((el)=>{
       return el._id===data._id
