@@ -16,7 +16,26 @@ app.get("/users", async (req, res) => {
     }
   });
   
+  app.get("/purchase",async(req,res)=>{
+
+    try{
+        const orders = await Purchase.find();
+        res.send(orders);
+    }
+    catch(err){
+        console.log(err)
+    }
+})
   
+  app.delete("/:id",async(req,res)=>{
+    try{
+      let user = await User.findByIdAndDelete({ _id: req.params.id });
+      return res.status(200).send({msg:"deleted"});
+    }
+    catch(err){
+       console.log(err)
+    }
+  })
   
   app.post("/login",async(req,res)=>{
       const { phoneNumber } = req.body;

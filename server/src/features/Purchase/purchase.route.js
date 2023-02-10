@@ -10,20 +10,10 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 app.use(authenticate);
 
-app.get("/purchase",async(req,res)=>{
-
-    try{
-        const orders = await Purchase.find();
-        res.send(orders);
-    }
-    catch(err){
-        console.log(err)
-    }
-})
 
 app.post("/purchase_order",async(req,res)=>{
     
-    const {name,phoneNumber,orderCategory,userid}=req.body;
+    const {name,phoneNumber,orderCategory}=req.body;
     const role=req.body.role;
     const id=req.body.id;
 
