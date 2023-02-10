@@ -10,7 +10,7 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 app.use(authenticate)
 
-app.get("/checkrole",async(req,res)=>{
+app.post("/checkrole",async(req,res)=>{
     try{
         const role=req.body.role;
         const id=req.body.id;

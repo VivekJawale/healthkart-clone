@@ -13,6 +13,28 @@
     font-family: "Montserrat", sans-serif;
     /* margin-bottom: 720px; */
   }
+  td:hover{
+    background-color: #0DCCC5;
+  }
+  
+  tbody tr .edit{
+    background-color: yellow;
+    font-weight: bold;
+    text-align: center;
+  }
+  tbody tr .delete{
+    background-color: red;
+    font-weight: bold;
+    text-align: center;
+  }
+  .edit:hover{
+    background-color: #0DCCC5;
+    background: #0DCCC5;
+  }
+  .delete:hover{
+    background-color: #0DCCC5;
+    background: #0DCCC5;
+  }
   .bubble {
     position: absolute;
     bottom: -100px;
@@ -254,11 +276,40 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0dccc5",endCo
     align-items: flex-start;
     justify-content: space-evenly;
   }
+  .PieChart{
+    width: 90%;
+    height: 400px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .PieChart div{
+    width: 49%;
+    height: 400px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    color: #000;
+    flex-direction: column;
+    /* border: 1px solid #0DCCC5; */
+  }
   .left_filter_admin{
-    width: 20%;
-    height: 500px;
+    width: 95%;
+    margin: auto;
+    height: 150px;
     padding-left: 20px;
     color:gray.800; box-shadow:rgba(0, 0, 0, 0.24) 0px 3px 8px ;border-radius: 10px ;padding:15px
+  }
+  table{
+    border: 1px solid #0DCCC5;
+  }
+  .radiofilter{
+    height: 100px;
+    flex-direction: row;
+
   }
   .right_filter_admin{
     width: 70%;
@@ -341,6 +392,9 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0dccc5",endCo
    
 
   @media only screen and (max-width: 500px) {
+    .PieChart{
+      display: none;
+    }
      .bubbles{
 display: none;
      }
@@ -361,6 +415,11 @@ display: none;
       margin-left: 5%;
       color:gray.800; box-shadow:rgba(0, 0, 0, 0.24) 0px 3px 8px ;border-radius: 10px ;padding:15px;
       font-size: large;
+    }
+    .radiofilter{
+      height: 250px;
+      flex-direction: column;
+  
     }
     .right_filter_admin{
       width: 90%;
@@ -398,6 +457,9 @@ display: none;
   }
 
   @media only screen and (max-width: 1000px) {
+    .PieChart{
+      display: none;
+    }
     .all_products_main{
       display: flex;
       width: 100%;
@@ -416,6 +478,11 @@ display: none;
       margin-left: 5%;
       color:gray.800; box-shadow:rgba(0, 0, 0, 0.24) 0px 3px 8px ;border-radius: 10px ;padding:15px
       ;font-size: 25px;
+    }
+    .radiofilter{
+      height: 250px;
+      flex-direction: column;
+  
     }
     .right_filter_admin{
       width: 90%;
