@@ -53,7 +53,7 @@ export default function SingleProduct() {
   ];
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div id="add_div"></div>
       <div className="breadcrumbs1">
         <span

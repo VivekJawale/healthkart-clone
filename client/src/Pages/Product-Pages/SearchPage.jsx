@@ -66,9 +66,9 @@ const getData= (params)=>{
 
   return (
     <Box>
-      <Navbar />
+      {/* <Navbar /> */}
       <Box pt={["90px", "90px", "70px"]}>
-        <SubNav />
+        {/* <SubNav /> */}
     <Box>
       {data.length>0 && <Box w="80%" m="15px auto" justifyContent="right" display="flex" alignItems="center">
         <Box w={["65%", "40%", "30%"]} border="1px solid gray" rounded="10px" p={["3px 6px", "4px 8px", "5px 10px"]} justifyContent="flex-start" display="flex" alignItems="center">
