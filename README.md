@@ -39,7 +39,7 @@ This project is a full stack application which focuses on e-commerce for fitness
 To be updated
 ## Demo
 
-deployed link for demo:- https://healthcart-clone.vercel.app/
+deployed link for demo:- https://healthkart-clone-git-master-vivekjawale.vercel.app/
 
 ## Tech-stack
 
