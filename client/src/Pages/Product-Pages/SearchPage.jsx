@@ -93,7 +93,7 @@ const getData= (params)=>{
       <Button border="1px solid black" rounded="5px" fontWeight="bold" fontSize="16px" p="15px 15px" disabled={page === 23} onClick={() => handlePageChange(1)}>NEXT</Button>
       </Box> */}
     </Box>
-    {data.length===0 && <Image w="80%" h="475px" m="auto" src="https://ghrce.raisoni.net/assets/images/gif/404.gif" />}
+    {data.length===0 && <Image w="85%" h="475px" m="auto" src="https://ghrce.raisoni.net/assets/images/gif/404.gif" />}
     </Box>
     </Box>
   )
