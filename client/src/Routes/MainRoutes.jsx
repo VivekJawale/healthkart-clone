@@ -1,15 +1,14 @@
 import React from 'react'
 import { Routes, Route } from "react-router-dom";
-import Home from "../Pages/Home"
 import Admin from '../Pages/Admin/Admin';
 import Cart from '../Pages/Cart';
-import Protiens from '../Pages/Product-Pages/Protiens';
+import Protiens from '../Pages/Product-Pages/Protiens/Protiens';
 import Wishlist from '../Pages/Wishlist';
 import SingleProduct from "../Pages/SingleProduct";
-import Gainer from '../Pages/Product-Pages/Gainer';
-import ProtienFoods from '../Pages/Product-Pages/ProtienFoods';
-import PrePost from '../Pages/Product-Pages/PrePost';
-import WorkoutEssential from '../Pages/Product-Pages/WorkoutEssential';
+import Gainer from '../Pages/Product-Pages/Gainer/Gainer';
+import ProtienFoods from '../Pages/Product-Pages/ProtienFoods/ProtienFoods';
+import PrePost from '../Pages/Product-Pages/PrePost/PrePost';
+import WorkoutEssential from '../Pages/Product-Pages/WorkoutEssential/WorkoutEssential';
 import SearchPage from '../Pages/Product-Pages/SearchPage';
 import HomePage from '../Pages/Home/HomePage';
 const MainRoutes = () => {
