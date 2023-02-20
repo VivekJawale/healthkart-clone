@@ -1,6 +1,5 @@
 
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from "./Navbar";
 import { ImageMagnifier } from "./thumbnailcarousal";
 import "./SingleProduct.css";
 import Accordion from "react-bootstrap/Accordion";

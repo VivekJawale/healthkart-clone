@@ -4,7 +4,7 @@ import Admin from '../Pages/Admin/Admin';
 import Cart from '../Pages/Cart';
 import Protiens from '../Pages/Product-Pages/Protiens/Protiens';
 import Wishlist from '../Pages/Wishlist';
-import SingleProduct from "../Pages/SingleProduct";
+import SingleProduct from "../Pages/ProductDetails/SingleProduct";
 import Gainer from '../Pages/Product-Pages/Gainer/Gainer';
 import ProtienFoods from '../Pages/Product-Pages/ProtienFoods/ProtienFoods';
 import PrePost from '../Pages/Product-Pages/PrePost/PrePost';
