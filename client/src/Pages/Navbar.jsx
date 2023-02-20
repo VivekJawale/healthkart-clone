@@ -41,11 +41,11 @@ const Navbar = () => {
   const [allcategories, setallcategories] = useState(false);
   const [bestSellers, setbestSellers] = useState(false);
   //  console.log(store.getState())
-  const nameUser=useSelector(store=>store.AuthReducer.name)
+  const nameUser = useSelector(store => store.AuthReducer.name)
   // console.log(nameUser)
- const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
-  const logout=()=>{
+  const logout = () => {
     swal({
       title: "Are you sure?",
       text: "You want to logout? You can login again!",
@@ -53,19 +53,19 @@ const Navbar = () => {
       buttons: true,
       dangerMode: true,
     })
-    .then((willDelete) => {
-      if (willDelete) {
-        dispatch(userLogout())
-        swal("Logged out successfully!", {
-          icon: "success",
-        });
-        setTimeout(() => {
-           window.location.reload();
-        }, 2000);
-      } else {
-       
-      }
-    });
+      .then((willDelete) => {
+        if (willDelete) {
+          dispatch(userLogout())
+          swal("Logged out successfully!", {
+            icon: "success",
+          });
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        } else {
+
+        }
+      });
   }
 
   const handleHoverallcategory = () => {
@@ -156,7 +156,7 @@ const Navbar = () => {
             <Box display={["flex", "flex", "none"]} justifyContent="space-between" alignItems="center" bg="#00cccc" p="25px 0px">
               <IconButton mt={2} mr={2} aria-label="Close Menu" size="lg" bg="none" color="white" icon={<CloseIcon />} onClick={() => changeDisplay('none')} />
               <Box w="90%" display="flex" justifyContent="center">
-                <Text bg="white" rounded="5px" p="10px 35px" color="#00cccc" fontSize="25px" onClick={() => {changeDisplay('none');setModalShow(true)}}>{nameUser==""?"Login / Signup":`Hi, ${nameUser}`}</Text>
+                <Text bg="white" rounded="5px" p="10px 35px" color="#00cccc" fontSize="25px" onClick={() => { changeDisplay('none'); setModalShow(true) }}>{nameUser == "" ? "Login / Signup" : `Hi, ${nameUser}`}</Text>
               </Box>
             </Box>
             <Box display={(allcategories || bestSellers) ? "none" : ["flex", "flex", "none"]} gap="30px" flexDir="column" align="center" fontSize="2xl" color="#1a0933" >
@@ -226,9 +226,9 @@ const Navbar = () => {
               <Box w="90%" m="auto" display="flex" justifyContent="space-between" alignItems="center">
                 <Box display="flex" p="15px 0px" justifyContent="space-between" alignItems="center" gap="5px">
                   <Icon color="#595959" boxSize="28px" as={HiOutlineLogout} />
-                  {nameUser!=""?
-                  <Text color="#595959" onClick={()=>{changeDisplay('none');setModalShow(true)}}>Login</Text>:
-                  <Text color="#595959" onClick={logout}>Logout</Text>}
+                  {nameUser != "" ?
+                    <Text color="#595959" onClick={() => { changeDisplay('none'); setModalShow(true) }}>Login</Text> :
+                    <Text color="#595959" onClick={logout}>Logout</Text>}
                 </Box>
                 <Icon color="#595959" boxSize="30px" as={ChevronRightIcon} />
               </Box>

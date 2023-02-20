@@ -12,8 +12,6 @@ const purchaseRoute=require("./src/features/Purchase/purchase.route");
 const app = express();
 app.use(cors({ origin: "*" }));
 app.use(express.json());
-
-
 app.get('/', async (req, res) => {
     res.sendFile(__dirname + '/utils/index.html');
 })

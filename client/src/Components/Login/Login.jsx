@@ -3,7 +3,6 @@ import Modal from "react-bootstrap/Modal";
 import { LoginCarousel } from "./LoginCarousal";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { PinInput, PinInputField, HStack } from "@chakra-ui/react";
 import { useState } from "react";
 import "./login.css";
 import { authentification } from "../../firebase";
@@ -93,7 +92,7 @@ export const LoginModal = (props) => {
     let payload = {
       phoneNumber: mnumber_to_num,
     };
-    await fetch("http://localhost:8080/user/login", {
+    await fetch("https://lime-fawn-veil.cyclic.app/user/login", {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
