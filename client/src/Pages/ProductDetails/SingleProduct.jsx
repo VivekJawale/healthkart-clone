@@ -5,7 +5,7 @@ import "./SingleProduct.css";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
-import { Box, Link,Icon, Text, AccordionItem, AccordionIcon, AccordionButton, AccordionPanel } from "@chakra-ui/react";
+import { Box, Link,Icon, Text } from "@chakra-ui/react";
 import { RiHome2Fill } from 'react-icons/ri';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { AiFillStar } from 'react-icons/ai';
