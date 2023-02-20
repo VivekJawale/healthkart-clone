@@ -81,7 +81,7 @@ export const LoginModal = (props) => {
   };
 
   const Verifyotp = async () => {
-    if (otp.length != 6) {
+    if (otp.length !== 6) {
       return swal({
         title: "You entered wrong OTP",
         text: "It must be 6 digit number",
@@ -151,7 +151,7 @@ export const LoginModal = (props) => {
   };
 
   const signupFunction = async () => {
-    if (name == "" || email == "" || pass == "") {
+    if (name === "" || email === "" || pass === "") {
       return swal({
         title: "Please fill all the fields!",
         text: "all fields must be filled",
@@ -168,7 +168,7 @@ export const LoginModal = (props) => {
       role: "Guest",
     };
     setLoading(true)
-    await fetch("http://localhost:8080/user/signup", {
+    await fetch("https://lime-fawn-veil.cyclic.app/user/signup", {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
