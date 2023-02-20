@@ -6,12 +6,13 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { addtocart } from '../../Redux/Cart/cart.action';
 import swal from 'sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
-import { store } from '../../Redux/store';
+import { useNavigate } from 'react-router-dom';
 
 
 const ProductCard = ({ props }) => {
   const dispatch=useDispatch();
   const cartData = useSelector((store) => store.CartReducer);
+  const navigate= useNavigate();
 
   
   const handlecart= (data)=>{
@@ -36,6 +37,10 @@ const ProductCard = ({ props }) => {
      }
   }
 
+  const singleProduct= ()=>{
+    navigate(`/products/${props._id}`)
+  }
+
 
   return (
     <Box _hover={{ boxShadow: "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px" }}
@@ -46,7 +51,7 @@ const ProductCard = ({ props }) => {
         </Box>
         <Icon boxSize="30px" color="#424040" as={BiHeart} />
       </Box>
-      <Image w="60%" m="auto" h="180px" src={props.image} alt="img" />
+      <Image onClick={singleProduct} w="60%" m="auto" h="180px" src={props.image} alt="img" />
       <Box borderTop="1px solid #B8B8B8" textAlign="left" padding="10px">
         <Box display="flex" justifyContent="space-between" alignItems="center" >
           <Box w="100%" display="flex" justifyContent="space-between" alignItems="center" mt={2} mb={4}>

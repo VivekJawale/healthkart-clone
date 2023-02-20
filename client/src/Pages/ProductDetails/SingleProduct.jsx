@@ -1,15 +1,17 @@
 
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ImageMagnifier } from "./thumbnailcarousal";
 import "./SingleProduct.css";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
-import swal from "sweetalert";
+import { Box, Link,Icon, Text, AccordionItem, AccordionIcon, AccordionButton, AccordionPanel } from "@chakra-ui/react";
+import { RiHome2Fill } from 'react-icons/ri';
+import { ChevronRightIcon } from '@chakra-ui/icons';
+import { AiFillStar } from 'react-icons/ai';
 
 export default function SingleProduct() {
 
-  const [loading, setLoading] = useState(false);
   const [data, setdata] = useState([]);
   const { id } = useParams();
   console.log(id);
@@ -28,242 +30,69 @@ export default function SingleProduct() {
 
     returnfetch().then((res) => {
       setdata(res);
-      console.log(data.product_colors.length);
     });
   }, [id]);
   
   console.log(data);
 
-  const createarrofsize = (n) => {
-    let arr = [];
-    for (var i = 1; i <= n; i++) {
-      arr.push(i);
-    }
-    console.log(arr);
-  };
 
-  const navigate = useNavigate();
-  const [thumbsrc, setThumbsrc] = useState(
-    `https://cdn.shopify.com/s/files/1/0906/2558/products/BeginnersEssentialsCombo3-WBGimages.jpg?v=1630683820`
-  );
-
-  const thumbnails = [
-    `${data.image}`
-  ];
   return (
     <>
       {/* <Navbar /> */}
       <div id="add_div"></div>
-      <div className="breadcrumbs1">
-        <span
-          style={{ color: "gray", cursor: "pointer" }}
-          onClick={() => navigate("/")}
-        >
-          Home
-        </span>
-        <svg
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv"
-          focusable="false"
-          width="25"
-          fill="gray"
-          height="30"
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          data-testid="KeyboardArrowRightIcon"
-        >
-          <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
-        </svg>
-        <span style={{ fontWeight: "bold" }}>{data.name}</span>
-      </div>
-
-      {/* ------------------------------------------------------thumbnail carousel----------------------------------------------- */}
-
-      <div className="description_data">
-        <div style={{ width: "492px", height: "1296px" }}>
-          <div
-            style={{
-              width: "492px",
-              height: "370px",
-              display: "flex",
-              top: "0",
-            }}
-          >
-            <div
-              style={{
-                width: "119px",
-                height: "360px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-evenly",
-                flexDirection: "column",
-              }}
-            >
-              {thumbnails.map((el) => {
-                return (
-                  <div
-                    id={el}
-                    style={{
-                      width: "74px",
-                      height: "74px",
-                      borderRadius: "12px",
-                      margin: "3px 12px",
-                    }}
-                    onMouseOver={() => {
-                      setThumbsrc(el);
-                      document.getElementById(el).style.border = "2px solid";
-                    }}
-                  >
-                    <img
-                      src={el}
-                      alt=""
-                      style={{ width: "50px", height: "68px" }}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-            <div
-              style={{
-                width: "361px",
-                height: "363px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                border: "1px solid #e4e4e4",
-                borderRadius: "12px",
-              }}
-            >
-              <ImageMagnifier width={"248px"} height={"337px"} src={thumbsrc} />
-            </div>
-          </div>
-        </div>
-
-        {/* --------------------------------------------title and price right side start--------------------------------- */}
-
-        <div
-          style={{
-            width: "683px",
-            height: "1256px",
-            dispaly: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexDirection: "column",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "left",
-              flexDirection: "column",
-            }}
-          >
-            <div
-              style={{
-                width: "683px",
-                height: "23px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "left",
-                marginBottom: "10px",
-              }}
-            >
-              <div
-                style={{
-                  width: "649px",
-                  height: "23px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "left",
-                }}
-              >
-                <span style={{ color: "#212121", fontSize: "20px" }}>
-                  {data.name}
-                </span>
-              </div>
-              <div style={{ width: "24px", height: "23px" }}>
-                <svg
-                  onClick={() => {
-                    swal({
-                      icon: "info",
-                      text: "Not Available For Now!",
-                      buttons: false,
-                    });
-                  }}
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  cursor="pointer"
-                  height="20"
-                  fill="#757575"
-                  viewBox="0 0 448 512"
-                >
-                  <path d="M352 224c53 0 96-43 96-96s-43-96-96-96s-96 43-96 96c0 4 .2 8 .7 11.9l-94.1 47C145.4 170.2 121.9 160 96 160c-53 0-96 43-96 96s43 96 96 96c25.9 0 49.4-10.2 66.6-26.9l94.1 47c-.5 3.9-.7 7.8-.7 11.9c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-25.9 0-49.4 10.2-66.6 26.9l-94.1-47c.5-3.9 .7-7.8 .7-11.9s-.2-8-.7-11.9l94.1-47C302.6 213.8 326.1 224 352 224z" />
-                </svg>
-              </div>
-            </div>
-
-            <div
-              style={{
-                width: "683px",
-                height: "18px",
-                display: "flex",
-                marginTop: "5px",
-                alignItems: "center",
-                justifyContent: "left",
-                marginLeft: "10px",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "18px",
-                  color: "#212121",
-                  fontWeight: "normal",
-                }}
-              >
-                ₹{data.price}
-                <span style={{ color: "#FC2779", fontSize: "14px" }}>
-                  ( 20% Off)
-                </span>
-              </span>
-            </div>
-          </div>
-            {/* --------------------------------------accordian------------------------------------------- */}
-
-            <div style={{ width: "683px", height: "245px" }}>
+      <Box w={["90%", "90%", "80%"]} m="auto">
+        <Box>
+          <Box display="flex" gap="5px" alignItems="center">
+            <Link href="/"><Icon color="#2eb8b8" as={RiHome2Fill} /></Link>
+            <Icon color="#2eb8b8" as={ChevronRightIcon} />
+            <Link href={`/products/${data._id}`} fontSize="14px">{data.name}</Link>
+          </Box>
+        </Box>
+        <Box p="40px 0px 150px 0px" display={["inline", "inline", "flex"]} justifyContent="space-between">
+          <Box w="40%" display="flex" justifyContent="center">
+            <Box p="25px 50px" boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" rounded="5px">
+              <ImageMagnifier width={"308px"} height={"337px"} src={data.image} />
+            </Box>
+          </Box>
+          <Box p="10px" w="55%">
+            <Text h="45px" overflow="clip" fontSize={["18px", "20px", "22px"]} fontFamily="'Trebuchet MS', sans-serif" color="#424040" >{data.name}</Text>
+            <Box m="5px 0px" display="flex" gap="10px" alignItems="center">
+              <Text mt="0" color="#424040" fontSize="17px" fontWeight="bold">₹ {data.price1}</Text>
+              <Text mt="0" color="#424040" fontSize="16px" textDecoration="line-through">₹ {data.price2}</Text>
+              <Text mt="0" fontSize="13px" fontWeight="bold" color="green">{data.discount}% off</Text>
+            </Box>
+            <Box w="50%">
+              <Box p="0" display="flex" gap="5px" alignItems="center" >
+                <Box boxSize="25px" display="flex" justifyContent="center" alignItems="center" border="1px solid #f66809" rounded="50%">
+                  <Icon m="0" boxSize={4} color="#f66809" as={AiFillStar}/>
+                </Box>
+                <Text color="#424040" fontSize="16px">₹ {data.bold ? data.bold : data.price1}</Text>
+                <Text color="#424040" fontSize="16px"> for Premium Member</Text>
+              </Box>
+            </Box>
+            <Box w="100%" h="245px" mt="15px">
               <Accordion flush style={{ width: "683px", height: "245px" }}>
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>DESCRIPTION</Accordion.Header>
                   <Accordion.Body>{data.description}</Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
-                  <Accordion.Header>HOW TO APPLY</Accordion.Header>
-                  <Accordion.Body>{data.description}</Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="2">
-                  <Accordion.Header>INGREDIENTS</Accordion.Header>
+                  <Accordion.Header>REVIEWS</Accordion.Header>
                   <Accordion.Body>
-                    {data.tag_list == null ? (
-                      <p>No info</p>
-                    ) : (
-                      data.tag_list.map((el) => {
-                        return <p>{el}</p>;
-                      })
-                    )}
+                    <Box display="flex" gap="15px" alignItems="center" mt={2} mb={4}>
+                      <Box bg="#2eb8b8" p="5px 10px" display="flex" justifyContent="space-between" alignItems="center">
+                        <Text m="0" color="white" fontSize="15px">{data.star_rating}</Text>
+                        <Icon m="0" boxSize={4} color="white" as={AiFillStar} />
+                      </Box>
+                      <Text fontSize="16px">{data.flexing_reviews}</Text>
+                    </Box>
                   </Accordion.Body>
                 </Accordion.Item>
-                <Accordion.Item eventKey="3">
-                  <Accordion.Header>COMMONLY ASKED QUESTIONS</Accordion.Header>
-                  <Accordion.Body>N.A.</Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="4">
-                  <Accordion.Header>REVIEWS</Accordion.Header>
-                  <Accordion.Body>0 Reviews</Accordion.Body>
-                </Accordion.Item>
               </Accordion>
-            </div>
-          </div>
-        </div>
-
+            </Box>
+          </Box>
+        </Box>
+      </Box>
       {/* ----------------------------------------------fixed under bar----------------------------------------------------------- */}
 
       <div
@@ -300,7 +129,7 @@ export default function SingleProduct() {
             }}
           >
             <img
-              src={data.api_featured_image}
+              src={data.image}
               alt=""
               style={{ width: "48px", height: "58px" }}
             />
@@ -345,7 +174,7 @@ export default function SingleProduct() {
                   fontWeight: "bold",
                 }}
               >
-                ₹{data.price}
+                ₹{data.price1}
                 <span
                   style={{
                     color: "#FC2779",
