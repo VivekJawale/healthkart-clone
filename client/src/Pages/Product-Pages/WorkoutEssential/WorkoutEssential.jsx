@@ -8,9 +8,7 @@ import WorkEssFilterComp from './WorkEssFilterComp';
 const WorkoutEssential = () => {
   return (
     <Box>
-      {/* <Navbar /> */}
-      <Box pt={["90px", "90px", "70px"]}>
-        {/* <SubNav /> */}
+      <Box>
         <Box w={["90%", "90%", "80%"]} m="auto">
           <Box display="flex" gap="5px" alignItems="center">
             <Link href="/"><Icon color="#2eb8b8" as={RiHome2Fill} /></Link>

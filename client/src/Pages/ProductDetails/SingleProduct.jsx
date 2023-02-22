@@ -2,9 +2,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { ImageMagnifier } from "./thumbnailcarousal";
 import Accordion from "react-bootstrap/Accordion";
-import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
-import { Box, Link,Icon, Text, useToast, Image } from "@chakra-ui/react";
+import { Box, Link,Icon, Text, useToast, Image, Button } from "@chakra-ui/react";
 import { RiHome2Fill } from 'react-icons/ri';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { AiFillStar } from 'react-icons/ai';
@@ -136,16 +135,16 @@ export default function SingleProduct() {
                 <Text color="#424040" fontSize={["13px", "14px", "15px"]}> for Premium Member </Text>
               </Box>
             </Box>
-            <Box m="15px 0px" w={["100%", "63%", "50%"]} bg="none" boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px" display="flex" justifyContent="space-between" alignItems="center">
-              <Box>
-                <Button onClick={()=>subfunc()} isDisabled={curr===1} bg="white" border="none">-</Button>
+            <Box m="15px 0px" w={["100%", "63%", "55%"]} bg="none" display="flex" justifyContent="space-between" alignItems="center">
+              <Box rounded="5px" border="1px solid #f66809" boxShadow="rgba(100, 100, 111, 0.2) 0px 7px 29px 0px">
+                <Button onClick={()=>subfunc()} isDisabled={curr===1} bg="white">-</Button>
                 <Button bg="white" border="none">{curr}</Button>
                 <Button onClick={()=>addfunc()} isDisabled={curr===maxquantity} bg="white" border="none">+</Button>
               </Box>
               <Box>
-                <Button onClick={()=>{handlecart(data)}}  _hover={{ bg: "#f66809", color: "white" }} mt="15px" fontWeight="bold" bg="white" 
-                  w="100%" fontSize="16px" rounded="8px" p="13px 0px" leftIcon={<FiShoppingCart />} color="#f66809" border="1px solid #f66809">
-                  <Icon as={FiShoppingCart} /> Add To Cart
+                <Button onClick={()=>{handlecart(data)}}  _hover={{ bg: "#f66809", color: "white" }} fontWeight="bold" bg="white" 
+                  w="100%" fontSize="16px" rounded="8px" p="13px 20px" leftIcon={<FiShoppingCart />} color="#f66809" border="1px solid #f66809">
+                   Add To Cart
                 </Button>
               </Box>
             </Box>
@@ -178,8 +177,8 @@ export default function SingleProduct() {
             </Box>
           </Box>
             <Button onClick={()=>{handlecart(data)}}  _hover={{ bg: "#f66809", color: "white" }} fontWeight="bold" bg="white" 
-             fontSize={["12px", "14px", "16px"]} rounded="8px" p={["5px 0px", "8px 0px", "13px 0px"]} leftIcon={<FiShoppingCart />} color="#f66809" border="1px solid #f66809">
-              <Icon as={FiShoppingCart} /> Add To Cart
+             fontSize={["12px", "14px", "16px"]} rounded="8px" p={["5px 10px", "8px 14px", "13px 20px"]} leftIcon={<FiShoppingCart />} color="#f66809" border="1px solid #f66809">
+               Add To Cart
             </Button>
           <Box></Box>
           <Box></Box>
