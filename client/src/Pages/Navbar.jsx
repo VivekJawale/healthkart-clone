@@ -88,6 +88,10 @@ const Navbar = () => {
     }
   };
 
+  const handleSearchClick= ()=>{
+    navigate(`/products/search/:${search}`);
+  }
+
 
 
 
@@ -107,6 +111,7 @@ const Navbar = () => {
           <Box w={["40%", "40%", "40%"]} display={["flex", "flex", "flex"]}>
             <InputGroup m="0px" bg="#f1f4f4" rounded="5px" gap={["3px", "6px", "10px"]} w="100%" display="flex" alignItems="center" p={["2px 4px", "4px 8px", "7px 15px"]} fontSize={["12px", "14px", "17px"]}>
               <Icon m="0px"
+              onClick={handleSearchClick}
                 pointerEvents='none'
                 color='#999999'
                 children={<Search2Icon />}
