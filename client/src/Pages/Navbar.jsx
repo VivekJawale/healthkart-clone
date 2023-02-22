@@ -111,7 +111,7 @@ const Navbar = () => {
                 color='#999999'
                 children={<Search2Icon />}
               />
-              <Input onKeyUp={(e) => handleSearch(e)} h={["14px", "19px", "24px"]} m="0px" bg="none" w="100%" border="none" p={["4px", "7px", "13px"]} outline="0px solid black" type='tel' fontSize={["12px", "14px", "17px"]} placeholder='Search for Products....' />
+              <Input onKeyUp={(e) => handleSearch(e)} h={["14px", "19px", "24px"]} m="0px" bg="none" w="100%" border="none" p={["4px", "7px", "13px"]} outline="0px solid black" type='text' fontSize={["12px", "14px", "17px"]} placeholder='Search for Products....' />
             </InputGroup>
           </Box>
           <Box w="17%" display="flex" justifyContent="space-between" alignItems="center">
