@@ -1,20 +1,27 @@
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ImageMagnifier } from "./thumbnailcarousal";
 import "./SingleProduct.css";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
-import { Box, Link,Icon, Text } from "@chakra-ui/react";
+import { Box, Link,Icon, Text, useToast, Image } from "@chakra-ui/react";
 import { RiHome2Fill } from 'react-icons/ri';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { AiFillStar } from 'react-icons/ai';
+import { FiShoppingCart } from 'react-icons/fi';
+import { useDispatch, useSelector } from "react-redux";
+import swal from 'sweetalert';
+import { addtocart } from '../../Redux/Cart/cart.action';
 
 export default function SingleProduct() {
 
   const [data, setdata] = useState([]);
   const { id } = useParams();
-  console.log(id);
+
+  const maxquantity= data.quantity;
+
+  const [curr, setCurr]= useState(1);
 
   useEffect(() => {
     // 👇️ scroll to top on page load
@@ -32,60 +39,126 @@ export default function SingleProduct() {
       setdata(res);
     });
   }, [id]);
+
+
+  const dispatch=useDispatch();
+  const cartData = useSelector((store) => store.CartReducer);
+  const navigate= useNavigate();
+
+  const toast = useToast()
+
   
-  console.log(data);
+  const handlecart= (data)=>{
+    let newcart2=cartData.filter((el)=>{
+      return el._id===data._id
+     })
+     if(newcart2.length>0){
+      swal({
+        title:"Item already available in cart",
+        text:"It seems item is already present in your cart",
+        icon:"warning"
+      })
+     }
+     else{
+      let newcart=[...cartData,data]
+      dispatch(addtocart(newcart));
+      swal({
+        title:"Added to cart successfully!",
+        text:"You can checkout after login!",
+        icon:"success"
+      })
+     }
+  }
+
+  const subfunc= () => {
+    if(curr>1){
+      setCurr((prev)=>prev-1);
+    }
+  }
+
+  const addfunc= () => {
+    if(curr<maxquantity){
+      setCurr((prev)=>prev+1);
+    }else{
+      toast({
+        title: `Only ${maxquantity} products are available`,
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      })
+    }
+  }
+  
 
 
   return (
     <>
       {/* <Navbar /> */}
       <div id="add_div"></div>
-      <Box w={["90%", "90%", "80%"]} m="auto">
+      <Box w={["90%", "90%", "80%"]} m="auto" pb="120px" >
         <Box>
-          <Box display="flex" gap="5px" alignItems="center">
+          <Box display="flex" pt="10px" gap="5px" alignItems="center">
             <Link href="/"><Icon color="#2eb8b8" as={RiHome2Fill} /></Link>
             <Icon color="#2eb8b8" as={ChevronRightIcon} />
-            <Link href={`/products/${data._id}`} fontSize="14px">{data.name}</Link>
+            <Link href={`/products/${data._id}`} fontSize={["11px", "12px", "14px"]}>{data.name}</Link>
           </Box>
         </Box>
-        <Box p="40px 0px 150px 0px" display={["inline", "inline", "flex"]} justifyContent="space-between">
-          <Box w="40%" display="flex" justifyContent="center">
-            <Box p="25px 50px" boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" rounded="5px">
-              <ImageMagnifier width={"308px"} height={"337px"} src={data.image} />
+        <Box p="30px 0px" display={["inline", "inline", "flex"]} justifyContent="space-between">
+          <Box w={["50%", "50%", "40%"]} m={["auto", "auto", "0px"]} display="flex" justifyContent="center">
+            <Box p="25px 50px" 
+            // boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" 
+            rounded="5px">
+              <ImageMagnifier width={"288px"} height={"327px"} src={data.image} />
             </Box>
           </Box>
-          <Box p="10px" w="55%">
-            <Text h="45px" overflow="clip" fontSize={["18px", "20px", "22px"]} fontFamily="'Trebuchet MS', sans-serif" color="#424040" >{data.name}</Text>
-            <Box m="5px 0px" display="flex" gap="10px" alignItems="center">
-              <Text mt="0" color="#424040" fontSize="17px" fontWeight="bold">₹ {data.price1}</Text>
-              <Text mt="0" color="#424040" fontSize="16px" textDecoration="line-through">₹ {data.price2}</Text>
-              <Text mt="0" fontSize="13px" fontWeight="bold" color="green">{data.discount}% off</Text>
+          <Box p="10px" w={["100%", "90%", "55%"]} m={["auto", "auto", "0px"]}>
+            <Text color="#2eb8b8" fontSize={["12px", "13px", "15px"]} fontFamily="'Trebuchet MS', sans-serif" >{data.category}</Text>
+            <Text fontSize={["18px", "20px", "22px"]} fontWeight="600" fontFamily="'Trebuchet MS', sans-serif" color="#424040" >{data.name}</Text>
+            <Text fontSize={["14px", "16px", "18px"]} color="#2eb8b8" >BY {data.name?.split(" ")[0]}</Text>
+            <Box display="flex" gap="15px" alignItems="center" mt={2} mb={4}>
+              <Box bg="#2eb8b8" p="5px 10px" display="flex" justifyContent="space-between" alignItems="center">
+                  <Text m="0" color="white" fontSize="15px">{data.star_rating}</Text>
+                  <Icon m="0" boxSize={4} color="white" as={AiFillStar} />
+              </Box>
+              <Text fontSize="16px">{data.flexing_reviews}</Text>
             </Box>
-            <Box w="50%">
-              <Box p="0" display="flex" gap="5px" alignItems="center" >
-                <Box boxSize="25px" display="flex" justifyContent="center" alignItems="center" border="1px solid #f66809" rounded="50%">
-                  <Icon m="0" boxSize={4} color="#f66809" as={AiFillStar}/>
+            <Text mt="0" color="#5b5757" fontSize={["14px", "16px", "18px"]} textDecoration="line-through">MRP: ₹ {data.price2}</Text>
+            <Box m="5px 0px 0px 0px" display="flex" gap="10px" alignItems="center">
+              <Text mt="0" color="#343232" fontSize={["14px", "16px", "18px"]} fontWeight="600">PRICE : ₹ {data.price1}</Text>
+              <Text mt="0" fontSize={["13px", "15px", "17px"]} fontWeight="600" color="green">{data.discount}% off</Text>
+            </Box>
+            <Text mt="0" fontSize={["10px", "11px", "12px"]} color="green">Inclisive of all taxes</Text>
+            <Box w={["100%", "80%", "45%"]} rounded="3px">
+              <Box p="7px" bg="#f1f4f4" display="flex" gap="5px" alignItems="center" >
+                <Box boxSize={["20px", "22px", "25px"]} display="flex" justifyContent="center" alignItems="center" border="1px solid #f66809" rounded="50%">
+                  <Icon m="0" boxSize={[3, 4, 4]} color="#f66809" as={AiFillStar}/>
                 </Box>
-                <Text color="#424040" fontSize="16px">₹ {data.bold ? data.bold : data.price1}</Text>
-                <Text color="#424040" fontSize="16px"> for Premium Member</Text>
+                <Text color="#424040" fontSize={["13px", "14px", "15px"]}>₹ {data.bold ? data.bold : data.price1}</Text>
+                <Text color="#424040" fontSize={["13px", "14px", "15px"]}> for Premium Member </Text>
               </Box>
             </Box>
-            <Box w="100%" h="245px" mt="15px">
-              <Accordion flush style={{ width: "683px", height: "245px" }}>
+            <Box m="15px 0px" w={["100%", "63%", "50%"]} bg="none" boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px" display="flex" justifyContent="space-between" alignItems="center">
+              <Box>
+                <Button onClick={()=>subfunc()} isDisabled={curr===1} bg="white" border="none">-</Button>
+                <Button bg="white" border="none">{curr}</Button>
+                <Button onClick={()=>addfunc()} isDisabled={curr===maxquantity} bg="white" border="none">+</Button>
+              </Box>
+              <Box>
+                <Button onClick={()=>{handlecart(data)}}  _hover={{ bg: "#f66809", color: "white" }} mt="15px" fontWeight="bold" bg="white" 
+                  w="100%" fontSize="16px" rounded="8px" p="13px 0px" leftIcon={<FiShoppingCart />} color="#f66809" border="1px solid #f66809">
+                  <Icon as={FiShoppingCart} /> Add To Cart
+                </Button>
+              </Box>
+            </Box>
+            <Box w="100%" mt="15px">
+              <Accordion style={{ width: "100%" }}>
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>DESCRIPTION</Accordion.Header>
-                  <Accordion.Body>{data.description}</Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="1">
-                  <Accordion.Header>REVIEWS</Accordion.Header>
                   <Accordion.Body>
-                    <Box display="flex" gap="15px" alignItems="center" mt={2} mb={4}>
-                      <Box bg="#2eb8b8" p="5px 10px" display="flex" justifyContent="space-between" alignItems="center">
-                        <Text m="0" color="white" fontSize="15px">{data.star_rating}</Text>
-                        <Icon m="0" boxSize={4} color="white" as={AiFillStar} />
-                      </Box>
-                      <Text fontSize="16px">{data.flexing_reviews}</Text>
-                    </Box>
+                    Protein’s bioavailability for the body ensures higher muscle gains or better 
+                    post-workout recovery. MB’s International & Indian patents-published Enhanced Absorption Formula 
+                    (EAF®) - also known as MB EnzymePro® - ensures 50% higher protein absorption and 60% higher BCAA 
+                    absorption.
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
@@ -93,154 +166,26 @@ export default function SingleProduct() {
           </Box>
         </Box>
       </Box>
-      {/* ----------------------------------------------fixed under bar----------------------------------------------------------- */}
-
-      <div
-        style={{
-          width: "100%",
-          margin: "auto",
-          height: "90px",
-          paddingBottom: "10px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "left",
-        }}
-        className="fixed_cart"
-      >
-        <div
-          style={{
-            width: "511px",
-            height: "90px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-evenly",
-            marginLeft: "110px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              border: "1px solid #e4e4e4",
-              borderRadius: "12px",
-              width: "71px",
-              height: "77px",
-            }}
-          >
-            <img
-              src={data.image}
-              alt=""
-              style={{ width: "48px", height: "58px" }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "start",
-              flexDirection: "column",
-            }}
-          >
-            <div
-              style={{
-                width: "411px",
-                height: "23px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "left",
-                marginLeft: "10px",
-              }}
-            >
-              <span style={{ color: "#212121", fontSize: "14px" }}>
-                {data.name}
-              </span>
-            </div>
-
-            <div
-              style={{
-                width: "411px",
-                height: "36px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "left",
-                marginLeft: "10px",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "24px",
-                  color: "#212121",
-                  fontWeight: "bold",
-                }}
-              >
-                ₹{data.price1}
-                <span
-                  style={{
-                    color: "#FC2779",
-                    fontSize: "14px",
-                    marginLeft: "10px",
-                  }}
-                >
-                  ( 20% Off)
-                </span>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "left",
-            alignItems: "center",
-            width: "708px",
-            height: "90px",
-          }}
-        >
-          <div
-            style={{
-              width: "42px",
-              height: "42px",
-              border: "2px solid #000",
-              borderRadius: "5px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            onClick={() =>alert("Added to wishlist")}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              style={{ marginLeft: "0px" }}
-              fill="#000"
-              width="30"
-              height="30"
-              viewBox="0 0 512 512"
-            >
-              <path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z" />
-            </svg>
-          </div>
-
-          <Button
-            style={{
-              width: "222px",
-              height: "44px",
-              marginLeft: "20px",
-              borderRadius: "5px",
-              backgroundColor: "#000000",
-              color: "#fff",
-              boxShadow: "inset 0 0 30px #616060",
-              fontWeight: "bold",
-            }}
-            onClick={() => {
-              alert("Added to cart")
-            }}
-          >
-            ADD TO CART
-          </Button>
-        </div>
-      </div>
+      <Box position="fixed" p="15px 0px" bottom="0" zIndex="100" w="100%" bg="white" boxShadow= "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px">
+        <Box w={["90%", "90%", "70%"]} m="auto" display="flex" alignItems="center" justifyContent="space-between">
+          <Box p="5px" rounded="5px" boxShadow="rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px">
+            <Image boxSize={["35px", "45px", "55px"]} src={data.image} alt="img" />
+          </Box>
+          <Box>
+            <Text color="#424040" fontSize={["11px", "13px", "15px"]}>{data.name}</Text>
+            <Box display="flex" alignItems="center" gap={["9px", "12px", "15px"]}>
+              <Text mt="0" fontWeight="600" fontSize={["16px", "18px", "20px"]}>₹{data.price1}</Text>
+              <Text mt="0" fontSize={["11px", "12px", "13px"]} fontWeight="bold" color="green">({data.discount}% off)</Text>
+            </Box>
+          </Box>
+            <Button onClick={()=>{handlecart(data)}}  _hover={{ bg: "#f66809", color: "white" }} fontWeight="bold" bg="white" 
+             fontSize={["12px", "14px", "16px"]} rounded="8px" p={["5px 0px", "8px 0px", "13px 0px"]} leftIcon={<FiShoppingCart />} color="#f66809" border="1px solid #f66809">
+              <Icon as={FiShoppingCart} /> Add To Cart
+            </Button>
+          <Box></Box>
+          <Box></Box>
+        </Box>
+      </Box>
     </>
   );
 }
