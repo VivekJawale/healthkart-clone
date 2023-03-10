@@ -18,7 +18,7 @@ const EnterRoom = () => {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ link: `https://healthmart-clone.vercel.app/${value}` }),
+      body: JSON.stringify({ link: `https://healthmart-clone.vercel.app/meet/${value}` }),
     }).then((res) => {
       if (res) {
         swal({

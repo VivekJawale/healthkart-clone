@@ -93,7 +93,7 @@ export const LoginModal = (props) => {
     let payload = {
       phoneNumber: mnumber_to_num,
     };
-    await fetch("http://localhost:8080/user/login", {
+    await fetch(`${process.env.REACT_APP_API_URL}user/login`, {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
@@ -169,7 +169,7 @@ export const LoginModal = (props) => {
       role: "Guest",
     };
     setLoading(true)
-    await fetch("http://localhost:8080/user/signup", {
+    await fetch(`${process.env.REACT_APP_API_URL}user/signup`, {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
