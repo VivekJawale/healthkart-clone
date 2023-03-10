@@ -1,7 +1,5 @@
 import React from 'react'
 import { Box, Link, Icon } from '@chakra-ui/react';
-import Navbar from '../Navbar';
-import SubNav from '../SubNav';
 import { RiHome2Fill } from 'react-icons/ri';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import GainerComp from './GainerComp';
@@ -10,9 +8,7 @@ import GainerFilterComp from './GainerFilterComp';
 const Gainer = () => {
   return (
     <Box>
-      {/* <Navbar /> */}
-      <Box pt={["90px", "90px", "70px"]}>
-        {/* <SubNav /> */}
+      <Box>
         <Box w={["90%", "90%", "80%"]} m="auto">
           <Box display="flex" gap="5px" alignItems="center">
             <Link href="/"><Icon color="#2eb8b8" as={RiHome2Fill} /></Link>

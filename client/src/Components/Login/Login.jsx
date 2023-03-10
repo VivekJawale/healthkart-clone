@@ -3,7 +3,6 @@ import Modal from "react-bootstrap/Modal";
 import { LoginCarousel } from "./LoginCarousal";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { PinInput, PinInputField, HStack } from "@chakra-ui/react";
 import { useState } from "react";
 import "./login.css";
 import { authentification } from "../../firebase";
@@ -82,7 +81,7 @@ export const LoginModal = (props) => {
   };
 
   const Verifyotp = async () => {
-    if (otp.length != 6) {
+    if (otp.length !== 6) {
       return swal({
         title: "You entered wrong OTP",
         text: "It must be 6 digit number",
@@ -93,7 +92,9 @@ export const LoginModal = (props) => {
     let payload = {
       phoneNumber: mnumber_to_num,
     };
+
     await fetch(`${process.env.REACT_APP_API_URL}user/login`, {
+
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
@@ -152,7 +153,7 @@ export const LoginModal = (props) => {
   };
 
   const signupFunction = async () => {
-    if (name == "" || email == "" || pass == "") {
+    if (name === "" || email === "" || pass === "") {
       return swal({
         title: "Please fill all the fields!",
         text: "all fields must be filled",
@@ -170,6 +171,7 @@ export const LoginModal = (props) => {
     };
     setLoading(true)
     await fetch(`${process.env.REACT_APP_API_URL}user/signup`, {
+
       method: "POST",
       body: JSON.stringify(payload),
       headers: {

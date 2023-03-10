@@ -20,9 +20,7 @@
     -webkit-appearance: none;
     margin: 0;
   }
-  input {
-    -moz-appearance: textfield;
-  }
+  
   .description_data {
     width: 100%;
     height: 1296px;

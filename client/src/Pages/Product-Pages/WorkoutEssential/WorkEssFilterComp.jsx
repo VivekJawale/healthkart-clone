@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Icon, Checkbox, Divider, Input, Text, Radio } from '@chakra-ui/react'
+import { Box, Icon, Checkbox, Divider, Text, Radio } from '@chakra-ui/react'
 import { useSearchParams } from 'react-router-dom'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 

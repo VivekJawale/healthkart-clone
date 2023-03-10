@@ -1,14 +1,15 @@
 import { Box, Button, Select, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import ProductCard from './ProductCard'
+import ProductCard from '../ProductCard'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import axios from 'axios'
 
-const ProtienFoodsComp = () => {
+const PrePostComp = () => {
 
 
-  
+ 
+
   const [ page, setPage]= useState(1);
   
   const [searchParams, setSearchParams]= useSearchParams();
@@ -63,7 +64,7 @@ const handlePageChange = (value) => {
 
 
 const getData= (params)=>{
-  return axios.get(`https://lime-fawn-veil.cyclic.app/product?category=proteinfoods&page=${page}&limit=21`, params)
+  return axios.get(`https://lime-fawn-veil.cyclic.app/product?category=prepostworkout&page=${page}&limit=21`, params)
       .then((r)=>{
         setData(r.data)
       })
@@ -99,4 +100,4 @@ const getData= (params)=>{
   )
 }
 
-export default ProtienFoodsComp
+export default PrePostComp

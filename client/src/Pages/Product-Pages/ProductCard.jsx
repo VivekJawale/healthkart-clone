@@ -6,12 +6,13 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { addtocart } from '../../Redux/Cart/cart.action';
 import swal from 'sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
-import { store } from '../../Redux/store';
+import { useNavigate } from 'react-router-dom';
 
 
 const ProductCard = ({ props }) => {
   const dispatch=useDispatch();
   const cartData = useSelector((store) => store.CartReducer);
+  const navigate= useNavigate();
 
   
   const handlecart= (data)=>{
@@ -36,6 +37,10 @@ const ProductCard = ({ props }) => {
      }
   }
 
+  const singleProduct= ()=>{
+    navigate(`/products/${props._id}`)
+  }
+
 
   return (
     <Box _hover={{ boxShadow: "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px" }}
@@ -46,9 +51,9 @@ const ProductCard = ({ props }) => {
         </Box>
         <Icon boxSize="30px" color="#424040" as={BiHeart} />
       </Box>
-      <Image w="60%" m="auto" h="180px" src={props.image} alt="img" />
+      <Image onClick={singleProduct} w="60%" m="auto" h="180px" src={props.image} alt="img" />
       <Box borderTop="1px solid #B8B8B8" textAlign="left" padding="10px">
-        <Box display="flex" justifyContent="space-between" alignItems="center" >
+        <Box onClick={singleProduct} display="flex" justifyContent="space-between" alignItems="center" >
           <Box w="100%" display="flex" justifyContent="space-between" alignItems="center" mt={2} mb={4}>
             <Box bg="#2eb8b8" p="5px 10px" display="flex" justifyContent="space-between" alignItems="center">
               <Text m="0" color="white" fontSize="15px">{props.star_rating}</Text>
@@ -57,13 +62,13 @@ const ProductCard = ({ props }) => {
             <Text fontSize="16px">{props.flexing_reviews}</Text>
           </Box>
         </Box>
-        <Text h="45px" overflow="clip" fontFamily="'Trebuchet MS', sans-serif" color="#424040" mb={5} >{props.name}</Text>
-        <Box w="100%" m="5px 0px" display="flex" justifyContent="space-between" alignItems="center" mb={5}>
+        <Text onClick={singleProduct} h="45px" overflow="clip" fontFamily="'Trebuchet MS', sans-serif" color="#424040" mb={5} >{props.name}</Text>
+        <Box onClick={singleProduct} w="100%" m="5px 0px" display="flex" justifyContent="space-between" alignItems="center" mb={5}>
           <Text mt="0" color="#424040" fontSize="17px" fontWeight="bold">₹ {props.price1}</Text>
           <Text mt="0" color="#424040" fontSize="16px" textDecoration="line-through">₹ {props.price2}</Text>
           <Text mt="0" fontSize="13px" fontWeight="bold" color="green">{props.discount}% off</Text>
         </Box>
-        <Box bg="#f1f4f4">
+        <Box bg="#f1f4f4" onClick={singleProduct}>
           <Box w="100%" m="auto" p="0" display="flex" justifyContent="space-between" alignItems="center" >
             <Box boxSize="20px" display="flex" justifyContent="center" alignItems="center" border="1px solid #f66809" rounded="50%">
               <Icon m="0" boxSize={3} color="#f66809" as={AiFillStar}/>

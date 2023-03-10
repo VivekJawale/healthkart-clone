@@ -1,7 +1,7 @@
 import { Box, Button, Select, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import ProductCard from './ProductCard'
+import ProductCard from '../ProductCard'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import axios from 'axios'
 

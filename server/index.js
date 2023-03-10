@@ -62,6 +62,7 @@ app.post("/sendmail", async (req, res) => {
     });
 });
 
+
 app.use("/user", userRoute);
 app.use("/product", productRoute);
 app.use("/cart", cartRoute);
