@@ -30,7 +30,7 @@ const sendMail = ({ link }) => {
 
     const mailConfings = {
       from: process.env.MYEMAIL,
-      to: ["akp20235@gmail.com", "ankitpatil2341@gmail.com"],
+      to: ["sanghamitramymail@gmail.com", "ankitpatil2341@gmail.com","vivekjawale41@gmail.com"],
       subject: "Invitation from User",
       text: "User is Welcoming you to meet please click on below link to join",
       html: `

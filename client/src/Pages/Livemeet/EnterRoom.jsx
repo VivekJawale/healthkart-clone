@@ -13,12 +13,12 @@ const EnterRoom = () => {
   const navigate = useNavigate();
 
   const handleAdd = async () => {
-    await fetch("http://localhost:8080/sendmail", {
+    await fetch(`${process.env.REACT_APP_API_URL}sendmail`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ link: `http://localhost:3000/meet/${value}` }),
+      body: JSON.stringify({ link: `https://healthmart-clone.vercel.app/${value}` }),
     }).then((res) => {
       if (res) {
         swal({
