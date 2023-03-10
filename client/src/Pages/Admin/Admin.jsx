@@ -62,7 +62,7 @@ const Admin = () => {
   const [page, setPage] = useState(1);
   const [totalPages, SetTotalPages] = useState(41);
   const [sort, setSort] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
   const navigate = useNavigate();
   const token = useSelector((store) => store.AuthReducer.token);
   const [userData, setUserdata] = useState([]);

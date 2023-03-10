@@ -12,6 +12,8 @@ import PrePost from '../Pages/Product-Pages/PrePost';
 import WorkoutEssential from '../Pages/Product-Pages/WorkoutEssential';
 import SearchPage from '../Pages/Product-Pages/SearchPage';
 import HomePage from '../Pages/Home/HomePage';
+import LiveMeet from '../Pages/Livemeet/LiveMeet';
+import EnterRoom from '../Pages/Livemeet/EnterRoom';
 const MainRoutes = () => {
   return (
     <div>
@@ -27,6 +29,8 @@ const MainRoutes = () => {
         <Route path='/products/:id' element={<SingleProduct />}></Route>
         <Route path='/wishlist' element={<Wishlist />}></Route>
         <Route path='/cart' element={<Cart />}></Route>
+        <Route path='/meet' element={<EnterRoom/>}></Route>
+        <Route path='/meet/:id' element={<LiveMeet/>}></Route>
       </Routes>
     </div>
   )

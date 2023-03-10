@@ -1,9 +1,26 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 export const chatBotContext = createContext();
 
 const Bot = ({ children }) => {
+  const token = useSelector((store) => store.AuthReducer.token);
+  const [roomid,setRoomid]=useState(`${token[0]+token[2]+token[5]+token[3]+"ey"}`);
+  // console.log(token)
+ 
+  useEffect(()=>{
+    if(token!=""||token!=undefined){
+     let newroomid;
+     for(let i=0;i<5;i++){
+      newroomid=newroomid+token[i]
+     }
+     setRoomid(newroomid)
+  }
+  },[token])
+  
+
   const steps = [
     {
       id: "1",
@@ -25,18 +42,18 @@ const Bot = ({ children }) => {
       options: [
         { value: 2, label: "Product Complaint", trigger: "6" },
         { value: 3, label: "About US", trigger: "7" },
-        { value: 5, label: "My orders", trigger: "5"},
+        { value: 5, label: "Live Call", trigger: "5"},
         { value: 4, label: "Nothing for now!", trigger: "9" }
       ]
     },
     {
       id: "5",
-      component: <div> logged in  first </div>,
+      component: <div>{token==""?"Login first":<Link to={`/meet`}>Click here to call</Link>} </div>,
       trigger: "8"
     },
     {
       id: "6",
-      component: <div>E-mail us at healthkartclone@gmail.com to send a complaint request.</div>,
+      component: <div>E-mail us at healthcartclone@gmail.com to send a complaint request.</div>,
       trigger: "8"
     },
     {
