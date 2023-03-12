@@ -5,7 +5,8 @@ import MainChatbot from './Components/Chatbot/MainChatbot';
 import "react-multi-carousel/lib/styles.css";
 import Navbar from './Pages/Navbar';
 import SubNav from './Pages/SubNav';
-import { Box } from '@chakra-ui/react';
+// import { Box } from '@chakra-ui/react';4
+import Footer from './Components/Footer';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <div style={{ paddingTop: "70px" }}> <SubNav /></div>
       <MainRoutes />
       <MainChatbot />
+      <Footer />
     </div>
   );
 }
