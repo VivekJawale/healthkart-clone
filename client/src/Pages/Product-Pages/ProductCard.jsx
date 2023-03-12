@@ -28,6 +28,7 @@ const ProductCard = ({ props }) => {
      }
      else{
       let newcart=[...cartData,data]
+      localStorage.setItem("cart", JSON.stringify(newcart));
       dispatch(addtocart(newcart));
       swal({
         title:"Added to cart successfully!",
