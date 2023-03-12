@@ -39,7 +39,7 @@ This project is a full stack application which focuses on e-commerce for fitness
 To be updated
 ## Demo
 
-deployed link for demo:- https://healthkart-clone-git-master-vivekjawale.vercel.app/
+deployed link for demo:- https://healthmart-clone.vercel.app/
 
 ## Tech-stack
 
@@ -54,8 +54,7 @@ deployed link for demo:- https://healthkart-clone-git-master-vivekjawale.vercel.
 - Javascript
 - Redux
 - Redux-persist
-- Sockets
-- WebRTC
+- ZegoCloud
 
 ## CSS libraries
 
