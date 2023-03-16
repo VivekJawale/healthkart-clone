@@ -10,6 +10,7 @@ import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import swal from "sweetalert";
 import { postLoginSuccess } from "../../Redux/Auth/auth.action";
 import { useDispatch } from "react-redux";
+import Spinner from 'react-bootstrap/Spinner';
 
 export const LoginModal = (props) => {
   const [otpentry, setOtpentry] = useState(false);
@@ -318,7 +319,7 @@ export const LoginModal = (props) => {
                   >
                     {loading ? (
                       <button className="signup_modal_btns" disabled>
-                        Get OTP
+                       <Spinner animation="border" variant="light" />
                       </button>
                     ) : (
                       <button
@@ -417,7 +418,7 @@ export const LoginModal = (props) => {
                   >
                     {loading ? (
                       <button className="signup_modal_btns" disabled>
-                        Continue
+                        <Spinner animation="border" variant="light" />
                       </button>
                     ) : (
                       <button className="signup_modal_btns" onClick={Verifyotp}>
@@ -555,7 +556,7 @@ export const LoginModal = (props) => {
                   >
                     {loading ? (
                       <button className="signup_modal_btns" disabled>
-                        Sign Up
+                        <Spinner animation="border" variant="light" />
                       </button>
                     ) : (
                       <button
