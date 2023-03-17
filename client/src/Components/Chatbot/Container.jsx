@@ -12,7 +12,7 @@ const Container = () => {
     headerFontSize: "14px",
     botBubbleColor: "#fff",
     headerFontColor: "#fff",
-    headerFontSize:"13px",
+    headerFontSize: "13px",
     botFontColor: "#000",
     userBubbleColor: "#0DCCC5",
     userFontColor: "#fff",
@@ -21,13 +21,13 @@ const Container = () => {
     botAvatar:
       "https://haptikappimg.haptikapi.com/uploads/36ad523f11344f606efee4f7ab6cdad8.png?w=600&h=600",
     floating: true,
-    userAvatar:"https://img.freepik.com/free-icon/user_318-875902.jpg?w=2000"
+    userAvatar: "https://img.freepik.com/free-icon/user_318-875902.jpg?w=2000",
   };
 
   return (
     <ThemeProvider theme={theme}>
       <ChatBot
-        headerTitle="HealthMart is Online! Chat with us!" 
+        headerTitle="HealthMart is Online! Chat with us!"
         // speechSynthesis={{ enable: true, lang: "en" }}
         steps={steps}
         {...config}

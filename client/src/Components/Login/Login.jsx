@@ -10,7 +10,7 @@ import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import swal from "sweetalert";
 import { postLoginSuccess } from "../../Redux/Auth/auth.action";
 import { useDispatch } from "react-redux";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 
 export const LoginModal = (props) => {
   const [otpentry, setOtpentry] = useState(false);
@@ -95,7 +95,6 @@ export const LoginModal = (props) => {
     };
 
     await fetch(`${process.env.REACT_APP_API_URL}user/login`, {
-
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
@@ -128,12 +127,12 @@ export const LoginModal = (props) => {
             if (res.msg == "new user") {
               setSignup(true);
               setOtpentry(false);
-              setLoading(false)
+              setLoading(false);
             } else {
               dispatch(postLoginSuccess(res));
               setSignup(false);
               setOtpentry(false);
-              setLoading(false)
+              setLoading(false);
               props.onHide();
             }
           })
@@ -170,9 +169,8 @@ export const LoginModal = (props) => {
       gender: gender,
       role: "Guest",
     };
-    setLoading(true)
+    setLoading(true);
     await fetch(`${process.env.REACT_APP_API_URL}user/signup`, {
-
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
@@ -187,7 +185,7 @@ export const LoginModal = (props) => {
         if (res.msg == "Logged in success") {
           setSignup(false);
           setOtpentry(false);
-          setLoading(false)
+          setLoading(false);
           dispatch(postLoginSuccess(res));
           props.onHide();
           swal({
@@ -199,7 +197,7 @@ export const LoginModal = (props) => {
           swal({
             title: " registration failed",
           });
-          setLoading(false)
+          setLoading(false);
           setOtpentry(false);
           setSignup(false);
         }
@@ -319,7 +317,7 @@ export const LoginModal = (props) => {
                   >
                     {loading ? (
                       <button className="signup_modal_btns" disabled>
-                       <Spinner animation="border" variant="light" />
+                        <Spinner animation="border" variant="light" />
                       </button>
                     ) : (
                       <button

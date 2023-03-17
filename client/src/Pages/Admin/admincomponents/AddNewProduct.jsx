@@ -84,7 +84,7 @@ const AddNewProduct = (props) => {
       size="lg md sm"
       aria-labelledby="contained-modal-title-vcenter"
       centered
-      style={{marginTop:"50px",paddingBottom:"50px"}}
+      style={{ marginTop: "50px", paddingBottom: "50px" }}
     >
       <Modal.Header closeButton>
         <Modal.Title

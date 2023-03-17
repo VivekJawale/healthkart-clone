@@ -73,7 +73,7 @@ const Admin = () => {
     Aos.init({ duration: 2000 });
   }, []);
 
-  if (token == "" || isAdmin==false) {
+  if (token == "" || isAdmin == false) {
     navigate("/");
     swal({
       title: "Not authorized!",
@@ -240,8 +240,6 @@ const Admin = () => {
       },
     ],
   };
-
- 
 
   return (
     <>
