@@ -82,6 +82,7 @@ const GainerFilterComp = () => {
     useEffect(()=>{
         let params={};
         category && (params.category= category);
+        console.log(category, params);
         discountvalue && (params.discountByCat=discountvalue);
         ratingvalue && (params.rating=ratingvalue);
         pricevalue && (params.priceByCat= pricevalue);
@@ -110,10 +111,10 @@ const GainerFilterComp = () => {
                         <Text _hover={{textDecoration:"underline", fontWeight:"bold"}} cursor="pointer" onClick={()=>setCategory([])} m="0px" fontSize="15px" color="teal">Clear</Text>
                     </Box>
                     <Divider />
-                    { showcategory && <Box className='categorybody' w="90%" m="auto">
+                    { showcategory && <Box className='categorybody' w="90%" m="auto" onChange={handleFilterCheckbox}>
                         {categories && categories.map((el)=>{
                             return <Box display="flex" gap="5px" mt="10px" fontSize="15px" alignItems="center">
-                                <Checkbox border="1px solid grey" isChecked={category.includes(el.value)} value={el.value} onChange={handleFilterCheckbox} />
+                                <Checkbox border="1px solid grey" isChecked={category.includes(el.value)} value={el.value} />
                                 <label>{el.name}</label>
                             </Box>
                         })}
