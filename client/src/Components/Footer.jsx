@@ -43,7 +43,7 @@ export default function Footer() {
         <Box
         mt={30}
             bg="#0DCCC5"
-            color={useColorModeValue('gray.700', 'gray.200')}>
+            color={useColorModeValue('white', 'white')}>
             <Container as={Stack} maxW={'6xl'} py={10}>
                 <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
                     <Stack align={'flex-start'}>
@@ -63,7 +63,7 @@ export default function Footer() {
                         <Link href={'#'}>Pricing</Link>
                         <Link href={'#'}>Releases</Link>
                     </Stack>
-                    <Stack align={'flex-start'}>
+                    <Stack color="white" align={'flex-start'}>
                         <ListHeader>Company</ListHeader>
                         <Link href={'#'}>About Us</Link>
                         <Link href={'#'}>Press</Link>
