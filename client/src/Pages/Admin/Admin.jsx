@@ -62,7 +62,7 @@ const Admin = () => {
   const [page, setPage] = useState(1);
   const [totalPages, SetTotalPages] = useState(41);
   const [sort, setSort] = useState("");
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
   const token = useSelector((store) => store.AuthReducer.token);
   const [userData, setUserdata] = useState([]);
@@ -73,7 +73,7 @@ const Admin = () => {
     Aos.init({ duration: 2000 });
   }, []);
 
-  if (token == "") {
+  if (token == "" || isAdmin == false) {
     navigate("/");
     swal({
       title: "Not authorized!",
@@ -240,15 +240,6 @@ const Admin = () => {
       },
     ],
   };
-
-  if (isAdmin == false) {
-    navigate("/");
-    swal({
-      title: "Not authorized!",
-      text: "You are not authorized! Please contact devlopers",
-      icon: "error",
-    });
-  }
 
   return (
     <>
